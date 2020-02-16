@@ -8,10 +8,6 @@ import java.util.Set;
 public class Container {
 
     @Id
-    @GeneratedValue(generator = "ContainerSeq")
-    @SequenceGenerator(name = "ContainerSeq", sequenceName = "container_seq", allocationSize = 1)
-    private Long id;
-
     private String noContainer;
     private String containerNoPin;
     private String containerType;
@@ -31,10 +27,6 @@ public class Container {
         this.containerNoPin = containerNoPin;
         this.containerType = containerType;
         this.containerDamage = containerDamage;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getNoContainer() {
@@ -82,8 +74,7 @@ public class Container {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return Objects.equals(id, container.id) &&
-                Objects.equals(noContainer, container.noContainer) &&
+        return  Objects.equals(noContainer, container.noContainer) &&
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
@@ -92,6 +83,6 @@ public class Container {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
+        return Objects.hash(noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
     }
 }
