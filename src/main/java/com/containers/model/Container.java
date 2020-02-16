@@ -19,6 +19,7 @@ public class Container {
     @OneToMany(targetEntity = ContainerDamage.class)
     private Set<ContainerDamage> containerDamage;
 
+
     @ManyToOne(targetEntity = ContainerShipowner.class)
     private ContainerShipowner containerShipowner;
 

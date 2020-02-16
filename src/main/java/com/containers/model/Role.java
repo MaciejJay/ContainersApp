@@ -1,6 +1,5 @@
 package com.containers.model;
 
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +8,7 @@ import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 @Entity
-public class Role implements GrantedAuthority {
+public class Role {
 
     @Id
     @GeneratedValue(generator = "roleSeq")
@@ -50,8 +49,5 @@ public class Role implements GrantedAuthority {
         return Objects.hash(id, authority);
     }
 
-    @Override
-    public String getAuthority() {
-        return authority;
-    }
+
 }
