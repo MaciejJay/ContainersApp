@@ -10,7 +10,7 @@ public class ContainerShipowner {
 
     @Id
     @GeneratedValue(generator = "ContainerShipownerSeq")
-    @SequenceGenerator(name = "ContainerSeq", sequenceName = "container_seq", allocationSize = 1)
+    @SequenceGenerator(name = "ContainerSeq", sequenceName = "Container_shipowner_seq", allocationSize = 1)
     private Long id;
     private String prefix;
     private String shortName;
