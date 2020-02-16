@@ -28,7 +28,7 @@ public class UserServiceTest {
     public void shouldAddNewUser() {
         // given
         User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "eMailTest@test.com");
+                "lastNameTest", "emailTest@test.com");
 
         // when
         User addedUser = sut.saveUser(user);
@@ -51,6 +51,24 @@ public class UserServiceTest {
         // then
         assertThatThrownBy(
                 () -> sut.getUserByUsername("thisUsernameDoesNotExist"))
+                .isInstanceOf(UserNotFoundException.class);
+    }
+
+    @Test
+    @Transactional
+    public void shouldDeleteUserByUsername() {
+        // given
+        User user = new User("usernameTest", "firstNameTest",
+                "lastNameTest", "emailTest@test.com");
+
+        //when
+        sut.saveUser(user);
+        assertThat(sut.getUserByUsername("usernameTest")).isNotNull();
+
+        // then
+        sut.deleteUser("usernameTest");
+        assertThatThrownBy(
+                () -> sut.getUserByUsername("usernameTest"))
                 .isInstanceOf(UserNotFoundException.class);
     }
 }
