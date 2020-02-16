@@ -7,7 +7,7 @@
 <body>
 
 <table>
-    <form action="containerPage.jsp">
+    <form action="/containerPage">
         <input type="text" placeholder="Username" name="login" required>
         <p style="color: red;">
         </p>
@@ -18,7 +18,7 @@
     </form>
 </table>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 <form:form method="POST" modelAttribute="user">
     <table>
-        <form action="findContainer.jsp">
+        <form action="/findContainer">
             <input type="text" placeholder="containerNo" name="containerNo" required>
             <p style="color: red;">
             </p>
@@ -20,7 +20,7 @@
     </table>
 </form:form>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

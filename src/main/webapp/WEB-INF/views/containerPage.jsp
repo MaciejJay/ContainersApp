@@ -8,7 +8,7 @@
 <h1>Menu</h1>
 
 <div style="left: 20px;">
-    <h2><a href="addNewContainer.jsp">Add new container</a> </h2>
+    <h2><a href="/addNewContainer">Add new container</a> </h2>
 </div>
 <div style="right: 20px">
     <table>
@@ -17,7 +17,7 @@
     </table>
 </div>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

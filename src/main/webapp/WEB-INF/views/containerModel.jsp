@@ -39,7 +39,7 @@
     <button type="submit" class="clear">Save and print</button>
 </form>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

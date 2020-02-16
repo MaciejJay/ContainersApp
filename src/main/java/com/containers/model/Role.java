@@ -49,8 +49,5 @@ public class Role {
         return Objects.hash(id, authority);
     }
 
-//    @Override
-//    public String getAuthority() {
-//        return authority;
-//    }
+
 }

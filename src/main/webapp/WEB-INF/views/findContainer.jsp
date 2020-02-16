@@ -10,7 +10,7 @@
         <h1>Here you will be able to check what is happening with your container</h1>
     </table>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

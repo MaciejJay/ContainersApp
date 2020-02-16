@@ -30,12 +30,12 @@
     <input type="text" name="WagonNo"/>
 
 </table>
-<form action="containerModel.jsp">
+<form action="/containerModel">
     <button type="submit" class="submit"> Submit</button>
     <button type="reset" class="clear">Clear</button>
 </form>
 
-<a href="/index.jsp">Back to home page</a>
+<a href="/index">Back to home page</a>
 
 </body>
 </html>

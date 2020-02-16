@@ -22,7 +22,7 @@
     <h1>Welcome on our site</h1>
 
     <div>
-        <form action="login.jsp" style="background-size: cover;
+        <form action="/login" style="background-size: cover;
         /*top: 20px;*/
         /*bottom: 20px;*/
         float: left;">
@@ -31,7 +31,7 @@
     </div>
 
     <div>
-        <form action="guest.jsp" style="background-size: cover; float: right;">
+        <form action="/guest" style="background-size: cover; float: right;">
             <button type="submit" class="guest">Guest</button>
         </form>
     </div>
