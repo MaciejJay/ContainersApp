@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+
 @Entity
 public class Container {
 
@@ -12,11 +15,15 @@ public class Container {
     private String containerNoPin;
     private String containerType;
 
-    @OneToMany(targetEntity = ContainerDamage.class)
+    @OneToMany(targetEntity = ContainerDamage.class,
+            fetch = EAGER,
+            cascade = ALL)
     private Set<ContainerDamage> containerDamage;
 
 
-    @ManyToOne(targetEntity = ContainerShipowner.class)
+    @ManyToOne(targetEntity = ContainerShipowner.class
+            , fetch = EAGER,
+            cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private ContainerShipowner containerShipowner;
 
     public Container() {
@@ -74,7 +81,7 @@ public class Container {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return  Objects.equals(noContainer, container.noContainer) &&
+        return Objects.equals(noContainer, container.noContainer) &&
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
