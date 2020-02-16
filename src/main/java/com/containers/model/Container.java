@@ -18,7 +18,7 @@ public class Container {
     @ManyToOne(targetEntity = ContainerDamage.class)
     private ContainerDamage containerDamage;
 
-    @OneToOne
+//    @OneToOne
     private ContainerShipowners containerShipowners;
 
     @ManyToOne(targetEntity = User.class)
