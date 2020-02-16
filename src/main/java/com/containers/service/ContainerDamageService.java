@@ -2,10 +2,12 @@ package com.containers.service;
 
 import com.containers.model.ContainerDamage;
 import com.containers.repository.ContainerDamageRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class ContainerDamageService {
 
     private final ContainerDamageRepository containerDamageRepository;

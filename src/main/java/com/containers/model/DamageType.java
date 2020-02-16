@@ -8,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 public class DamageType {
+
     @Id
     @GeneratedValue(generator = "damageSeq")
     @SequenceGenerator(name = "damageSeq", sequenceName = "damage_seq", allocationSize = 1)
