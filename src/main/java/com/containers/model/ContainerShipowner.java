@@ -26,10 +26,6 @@ public class ContainerShipowner {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getPrefix() {
         return prefix;
     }
