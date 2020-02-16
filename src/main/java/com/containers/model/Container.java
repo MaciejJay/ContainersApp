@@ -18,21 +18,17 @@ public class Container {
     @ManyToOne(targetEntity = ContainerDamage.class)
     private ContainerDamage containerDamage;
 
-    @OneToOne
-    private ContainerShipowners containerShipowners;
-
     @ManyToOne(targetEntity = User.class)
     private User user;
 
     public Container() {
     }
 
-    public Container(String noContainer, String containerNoPin, String containerType, ContainerDamage containerDamage, ContainerShipowners containerShipowners, User user) {
+    public Container(String noContainer, String containerNoPin, String containerType, ContainerDamage containerDamage, User user) {
         this.noContainer = noContainer;
         this.containerNoPin = containerNoPin;
         this.containerType = containerType;
         this.containerDamage = containerDamage;
-        this.containerShipowners = containerShipowners;
         this.user = user;
     }
 
@@ -72,14 +68,6 @@ public class Container {
         this.containerDamage = containerDamage;
     }
 
-    public ContainerShipowners getContainerShipowners() {
-        return containerShipowners;
-    }
-
-    public void setContainerShipowners(ContainerShipowners containerShipowners) {
-        this.containerShipowners = containerShipowners;
-    }
-
     public User getUser() {
         return user;
     }
@@ -98,12 +86,11 @@ public class Container {
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
-                containerShipowners == container.containerShipowners &&
                 Objects.equals(user, container.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, containerShipowners, user);
+        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, user);
     }
 }
