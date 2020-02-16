@@ -23,8 +23,14 @@ public class Container {
     @ManyToOne(targetEntity = ContainerShipowner.class)
     private ContainerShipowner containerShipowner;
 
-
     public Container() {
+    }
+
+    public Container(String noContainer, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
+        this.noContainer = noContainer;
+        this.containerNoPin = containerNoPin;
+        this.containerType = containerType;
+        this.containerDamage = containerDamage;
     }
 
     public Long getId() {
