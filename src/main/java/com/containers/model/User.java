@@ -14,10 +14,18 @@ public class User {
             sequenceName = "user_seq", allocationSize = 1)
     private Long id;
     private String userName;
+    private String firstName;
     private String lastName;
     private String eMail;
 
     public User() {
+    }
+
+    public User(String userName, String firstName, String lastName, String eMail) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
     }
 
     public Long getId() {
