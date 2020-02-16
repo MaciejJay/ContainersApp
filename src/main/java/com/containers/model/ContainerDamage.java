@@ -17,6 +17,9 @@ public class ContainerDamage {
     private StatusEnum containerStatus;
     private String description;
 
+    @ManyToOne(targetEntity = Container.class)
+    private Container container;
+
     @OneToMany(targetEntity = Image.class)
     private Set<Image> images;
 
@@ -30,25 +33,19 @@ public class ContainerDamage {
     public ContainerDamage() {
     }
 
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Set<Image> images,
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
                            Set<DamageType> damageTypes, String description, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
+        this.container = container;
         this.images = images;
         this.damageTypes = damageTypes;
         this.description = description;
         this.user = user;
     }
 
-    public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus,
-                           Set<Image> images, Set<DamageType> damageTypes, String description, User user) {
-        this.id = id;
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.images = images;
-        this.damageTypes = damageTypes;
-        this.description = description;
-        this.user = user;
+    public Container getContainerId() {
+        return container;
     }
 
     public User getUser() {
@@ -107,27 +104,15 @@ public class ContainerDamage {
         return Objects.equals(id, that.id) &&
                 Objects.equals(addDate, that.addDate) &&
                 containerStatus == that.containerStatus &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(container, that.container) &&
                 Objects.equals(images, that.images) &&
                 Objects.equals(damageTypes, that.damageTypes) &&
-                Objects.equals(description, that.description) &&
                 Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addDate, containerStatus, images, damageTypes, description, user);
-    }
-
-    @Override
-    public String toString() {
-        return "ContainerDamage{" +
-                "id=" + id +
-                ", addDate=" + addDate +
-                ", containerStatus=" + containerStatus +
-                ", images=" + images +
-                ", damages=" + damageTypes +
-                ", user='" + user +
-                ", description='" + description + '\'' +
-                '}';
+        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
     }
 }
