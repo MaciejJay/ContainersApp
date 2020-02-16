@@ -2,7 +2,6 @@ package com.containers.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ public class ContainerDamage {
     }
 
     public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Set<Image> images,
-                           EnumSet<DamageEnum> damages, String description) {
+                           Set<DamageEnum> damages, String description) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
         this.images = images;
@@ -35,7 +34,7 @@ public class ContainerDamage {
     }
 
     public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus,
-                           Set<Image> images, EnumSet<DamageEnum> damages, String description) {
+                           Set<Image> images, Set<DamageEnum> damages, String description) {
         this.id = id;
         this.addDate = addDate;
         this.containerStatus = containerStatus;
@@ -76,7 +75,7 @@ public class ContainerDamage {
         return damages;
     }
 
-    public void setDamages(EnumSet<DamageEnum> damages) {
+    public void setDamages(Set<DamageEnum> damages) {
         this.damages = damages;
     }
 
