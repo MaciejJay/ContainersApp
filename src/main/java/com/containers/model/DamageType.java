@@ -9,8 +9,8 @@ import java.util.Objects;
 @Entity
 public class DamageType {
     @Id
-    @GeneratedValue(generator = "damageSeq")
-    @SequenceGenerator(name = "damageSeq", sequenceName = "damage_seq", allocationSize = 1)
+    @GeneratedValue(generator = "damageTypeSeq")
+    @SequenceGenerator(name = "damageTypeSeq", sequenceName = "damage_type_seq", allocationSize = 1)
     private Long id;
     private String damageType;
 
