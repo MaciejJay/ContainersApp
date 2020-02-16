@@ -2,6 +2,7 @@ package com.containers.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Container {
@@ -15,29 +16,22 @@ public class Container {
     private String containerNoPin;
     private String containerType;
 
-    @ManyToOne(targetEntity = ContainerDamage.class)
-    private ContainerDamage containerDamage;
+    @OneToMany(targetEntity = ContainerDamage.class)
+    private Set<ContainerDamage> containerDamage;
 
-    @OneToOne
-    private ContainerShipowners containerShipowners;
+    @ManyToOne(targetEntity = ContainerShipowner.class)
+    private ContainerShipowner containerShipowner;
 
-    @ManyToOne(targetEntity = User.class)
-    private User user;
 
     public Container() {
     }
 
-    public Container(String noContainer, String containerNoPin, String containerType, ContainerDamage containerDamage, ContainerShipowners containerShipowners, User user) {
-        this.noContainer = noContainer;
-        this.containerNoPin = containerNoPin;
-        this.containerType = containerType;
-        this.containerDamage = containerDamage;
-        this.containerShipowners = containerShipowners;
-        this.user = user;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNoContainer() {
@@ -64,28 +58,20 @@ public class Container {
         this.containerType = containerType;
     }
 
-    public ContainerDamage getContainerDamage() {
+    public Set<ContainerDamage> getContainerDamage() {
         return containerDamage;
     }
 
-    public void setContainerDamage(ContainerDamage containerDamage) {
+    public void setContainerDamage(Set<ContainerDamage> containerDamage) {
         this.containerDamage = containerDamage;
     }
 
-    public ContainerShipowners getContainerShipowners() {
-        return containerShipowners;
+    public ContainerShipowner getContainerShipowner() {
+        return containerShipowner;
     }
 
-    public void setContainerShipowners(ContainerShipowners containerShipowners) {
-        this.containerShipowners = containerShipowners;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setContainerShipowner(ContainerShipowner containerShipowner) {
+        this.containerShipowner = containerShipowner;
     }
 
     @Override
@@ -98,12 +84,11 @@ public class Container {
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
-                containerShipowners == container.containerShipowners &&
-                Objects.equals(user, container.user);
+                Objects.equals(containerShipowner, container.containerShipowner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, containerShipowners, user);
+        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
     }
 }
