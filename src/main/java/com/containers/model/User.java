@@ -21,6 +21,13 @@ public class User {
     public User() {
     }
 
+    public User(String userName, String firstName, String lastName, String eMail) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+    }
+
     public Long getId() {
         return id;
     }
