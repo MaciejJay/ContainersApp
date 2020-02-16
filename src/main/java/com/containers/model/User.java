@@ -9,27 +9,27 @@ import java.util.Objects;
 public class User {
 
     @Id
-    private String userName;
+    private String username;
     private String firstName;
     private String lastName;
-    private String eMail;
+    private String email;
 
     public User() {
     }
 
-    public User(String userName, String firstName, String lastName, String eMail) {
-        this.userName = userName;
+    public User(String username, String firstName, String lastName, String email) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eMail = eMail;
+        this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getFirstName() {
@@ -48,12 +48,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -61,24 +61,24 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userName, user.userName) &&
+        return Objects.equals(username, user.username) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(eMail, user.eMail);
+                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, firstName, lastName, eMail);
+        return Objects.hash(username, firstName, lastName, email);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
