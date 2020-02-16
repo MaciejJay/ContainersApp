@@ -2,6 +2,7 @@ package com.containers.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Container {
@@ -15,21 +16,21 @@ public class Container {
     private String containerNoPin;
     private String containerType;
 
-    @ManyToOne(targetEntity = ContainerDamage.class)
-    private ContainerDamage containerDamage;
+    @OneToMany(targetEntity = ContainerDamage.class)
+    private Set<ContainerDamage> containerDamage;
 
-    @ManyToOne(targetEntity = User.class)
-    private User user;
+
+    @ManyToOne(targetEntity = ContainerShipowner.class)
+    private ContainerShipowner containerShipowner;
 
     public Container() {
     }
 
-    public Container(String noContainer, String containerNoPin, String containerType, ContainerDamage containerDamage, User user) {
+    public Container(String noContainer, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
         this.noContainer = noContainer;
         this.containerNoPin = containerNoPin;
         this.containerType = containerType;
         this.containerDamage = containerDamage;
-        this.user = user;
     }
 
     public Long getId() {
@@ -60,20 +61,20 @@ public class Container {
         this.containerType = containerType;
     }
 
-    public ContainerDamage getContainerDamage() {
+    public Set<ContainerDamage> getContainerDamage() {
         return containerDamage;
     }
 
-    public void setContainerDamage(ContainerDamage containerDamage) {
+    public void setContainerDamage(Set<ContainerDamage> containerDamage) {
         this.containerDamage = containerDamage;
     }
 
-    public User getUser() {
-        return user;
+    public ContainerShipowner getContainerShipowner() {
+        return containerShipowner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setContainerShipowner(ContainerShipowner containerShipowner) {
+        this.containerShipowner = containerShipowner;
     }
 
     @Override
@@ -86,11 +87,11 @@ public class Container {
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
-                Objects.equals(user, container.user);
+                Objects.equals(containerShipowner, container.containerShipowner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, user);
+        return Objects.hash(id, noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
     }
 }

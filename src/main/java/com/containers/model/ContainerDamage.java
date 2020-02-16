@@ -15,32 +15,41 @@ public class ContainerDamage {
     private Long id;
     private LocalDate addDate;
     private StatusEnum containerStatus;
+    private String description;
+
+    @ManyToOne(targetEntity = Container.class)
+    private Container container;
+
     @OneToMany(targetEntity = Image.class)
     private Set<Image> images;
-    @ElementCollection
-    private Set<DamageEnum> damages;
-    private String description;
+
+    @OneToMany(targetEntity = DamageType.class)
+    private Set<DamageType> damageTypes;
+
+    @ManyToOne(targetEntity = User.class)
+    private User user;
+
 
     public ContainerDamage() {
     }
 
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Set<Image> images,
-                           Set<DamageEnum> damages, String description) {
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
+                           Set<DamageType> damageTypes, String description, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
+        this.container = container;
         this.images = images;
-        this.damages = damages;
+        this.damageTypes = damageTypes;
         this.description = description;
+        this.user = user;
     }
 
-    public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus,
-                           Set<Image> images, Set<DamageEnum> damages, String description) {
-        this.id = id;
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.images = images;
-        this.damages = damages;
-        this.description = description;
+    public Container getContainerId() {
+        return container;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public Long getId() {
@@ -71,12 +80,12 @@ public class ContainerDamage {
         this.images = images;
     }
 
-    public Set<DamageEnum> getDamages() {
-        return damages;
+    public Set<DamageType> getDamageTypes() {
+        return damageTypes;
     }
 
-    public void setDamages(Set<DamageEnum> damages) {
-        this.damages = damages;
+    public void setDamageTypes(Set<DamageType> damageTypes) {
+        this.damageTypes = damageTypes;
     }
 
     public String getDescription() {
@@ -95,25 +104,15 @@ public class ContainerDamage {
         return Objects.equals(id, that.id) &&
                 Objects.equals(addDate, that.addDate) &&
                 containerStatus == that.containerStatus &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(container, that.container) &&
                 Objects.equals(images, that.images) &&
-                Objects.equals(damages, that.damages) &&
-                Objects.equals(description, that.description);
+                Objects.equals(damageTypes, that.damageTypes) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addDate, containerStatus, images, damages, description);
-    }
-
-    @Override
-    public String toString() {
-        return "ContainerDamage{" +
-                "id=" + id +
-                ", addDate=" + addDate +
-                ", containerStatus=" + containerStatus +
-                ", images=" + images +
-                ", damages=" + damages +
-                ", description='" + description + '\'' +
-                '}';
+        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
     }
 }
