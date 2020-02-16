@@ -14,8 +14,6 @@ public class DamageType {
     private Long id;
     private String damageType;
 
-
-
     public DamageType() {
     }
 
