@@ -79,4 +79,15 @@ public class ContainerShipowner {
     public int hashCode() {
         return Objects.hash(id, prefix, shortName, fullName, containers);
     }
+
+    @Override
+    public String toString() {
+        return "ContainerShipowner{" +
+                "id=" + id +
+                ", prefix='" + prefix + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", containers=" + containers +
+                '}';
+    }
 }

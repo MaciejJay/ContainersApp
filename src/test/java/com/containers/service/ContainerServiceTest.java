@@ -1,5 +1,6 @@
 package com.containers.service;
 
+import com.containers.exceptions.ContainerNotFoundForShipownerException;
 import com.containers.model.Container;
 import com.containers.repository.ContainerRepository;
 import org.junit.jupiter.api.Test;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -36,7 +39,7 @@ public class ContainerServiceTest {
         // when
         Set<Container> actual = sut.findAllContainers();
         // then
-        assertThat(actual).size().isEqualTo(2);
+        assertThat(actual).size().isEqualTo(3);
     }
 
     @Test
@@ -63,21 +66,14 @@ public class ContainerServiceTest {
         assertThat(actual).isEqualToComparingFieldByField(updatedContainer);
     }
 
-//    @Test
-//    void shouldFindContainersByShipowner() {
-//        // when
-//        Set<Container> actual = sut.findContainersByShipownerId(1L);
-//        // then
-//        assertThat(actual).hasSize(2);
-//    }
-
     @Test
     void shouldFindByContainerShipowner_id() {
         // when
-        Set<Container> actual = sut.findContainersByShipownerId(1L);
+        Set<Container> actual = sut.findByContainersShipownerId(1L);
         // then
-        assertThat(actual).hasSize(2);
+        assertThat(actual).hasSize(3);
     }
 
+    //TODO: test - shouldThrowContainerNotFoundForShipownerException()
 
 }

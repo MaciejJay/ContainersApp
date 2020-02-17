@@ -1,7 +1,7 @@
 package com.containers.service;
 
 import com.containers.exceptions.ContainerNotFoundException;
-import com.containers.exceptions.ShipownerHasNotAnyContainerException;
+import com.containers.exceptions.ContainerNotFoundForShipownerException;
 import com.containers.model.Container;
 import com.containers.repository.ContainerRepository;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ContainerService {
@@ -43,18 +44,15 @@ public class ContainerService {
         } else throw new ContainerNotFoundException("Container not found");
     }
 
-    //TODO:
-//    public Set<Container> findContainersByShipownerId(Long id) {
-//        Optional<Container> shipownerContainers = containerRepository.findContainersByContainerShipowner_Id(id);
-//        if (shipownerContainers.isPresent()) {
-//            return shipownerContainers; //TODO: Jak to zrobić?
-//        } else throw new ShipownerHasNotAnyContainerException("Containers not found for" + id);
-//    }
+    public Set<Container> findByContainersShipownerId(Long id) {
+        Optional<Set<Container>> shipownerContainers = containerRepository.findByContainerShipowner_Id(id);
 
-    public Set<Container> findContainersByShipownerId(Long id) {
-        Set<Container> shipownerContainers = containerRepository.findByContainerShipowner_Id(id);
-        if (!shipownerContainers.isEmpty()) {
-            return shipownerContainers;
-        } else throw new ShipownerHasNotAnyContainerException("Containers not found for: " + id);
+        if (shipownerContainers.isPresent() ) {
+            return new HashSet<>(shipownerContainers.get());
+        }else {
+            throw new ContainerNotFoundForShipownerException("Not found containers for shipowner id: " + id);
+        }
     }
+
+
 }

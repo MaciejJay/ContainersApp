@@ -92,4 +92,15 @@ public class Container {
     public int hashCode() {
         return Objects.hash(noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
     }
+
+    @Override
+    public String toString() {
+        return "Container{" +
+                "noContainer='" + noContainer + '\'' +
+                ", containerNoPin='" + containerNoPin + '\'' +
+                ", containerType='" + containerType + '\'' +
+                ", containerDamage=" + containerDamage +
+                ", containerShipowner=" + containerShipowner +
+                '}';
+    }
 }
