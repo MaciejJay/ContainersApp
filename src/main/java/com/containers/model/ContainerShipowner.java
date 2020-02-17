@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.*;
+
 @Entity
 public class ContainerShipowner {
     // examples: MSC, MAERSK, COSCO, APL, HAPAG
@@ -16,7 +19,9 @@ public class ContainerShipowner {
     private String shortName;
     private String fullName;
 
-    @OneToMany(targetEntity = Container.class)
+    @OneToMany(targetEntity = Container.class,
+            fetch = EAGER,
+            cascade = ALL)
     private Set<Container> containers;
 
     public ContainerShipowner() {
@@ -73,5 +78,16 @@ public class ContainerShipowner {
     @Override
     public int hashCode() {
         return Objects.hash(id, prefix, shortName, fullName, containers);
+    }
+
+    @Override
+    public String toString() {
+        return "ContainerShipowner{" +
+                "id=" + id +
+                ", prefix='" + prefix + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", containers=" + containers +
+                '}';
     }
 }
