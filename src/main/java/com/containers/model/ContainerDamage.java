@@ -14,6 +14,7 @@ public class ContainerDamage {
             sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private LocalDate addDate;
+  
     @Enumerated(EnumType.STRING)
     private StatusEnum containerStatus;
     private String description;
