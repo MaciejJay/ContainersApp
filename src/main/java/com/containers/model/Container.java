@@ -91,7 +91,8 @@ public class Container {
     @Override
     public int hashCode() {
         return Objects.hash(noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
-      
+    }
+
     @Override
     public String toString() {
         return "Container{" +

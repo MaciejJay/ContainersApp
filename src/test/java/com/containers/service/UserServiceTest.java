@@ -71,4 +71,22 @@ public class UserServiceTest {
                 () -> sut.getUserByUsername("usernameTest"))
                 .isInstanceOf(UserNotFoundException.class);
     }
+
+    @Test
+    @Transactional
+    public void shouldUpdateUserByUsername() {
+        // given
+        User user = new User("usernameTest", "firstNameTest",
+                "lastNameTest", "emailTest@test.com");
+        User updatedUser = new User("usernameTest", "updatedFirstNameTest",
+                "lastNameTest", "emailTest@test.com");
+
+        // when
+        sut.saveUser(user);
+        assertThat(user.getFirstName().equals("firstNameTest"));
+
+        // then
+        sut.updateUser(user);
+        assertThat(user.getFirstName().equals("updatedFirstNameTest"));
+    }
 }
