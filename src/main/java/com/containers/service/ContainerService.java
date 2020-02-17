@@ -20,6 +20,7 @@ public class ContainerService {
         this.containerRepository = containerRepository;
     }
 
+
     public Set<Container> findAllContainers() {
         return new HashSet<>(containerRepository.findAll());
     }
@@ -53,6 +54,4 @@ public class ContainerService {
             throw new ContainerNotFoundForShipownerException("Not found containers for shipowner id: " + id);
         }
     }
-
-
 }

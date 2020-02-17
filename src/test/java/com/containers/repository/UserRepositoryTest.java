@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     @Test
     public void shouldReturnOptionalOfUsersByUserNames() {
         // when
-        Optional<User> actual = sut.findByUserName("userName");
+        Optional<User> actual = sut.findByUsername("userName");
 
         // then
         assertThat(actual).isPresent();

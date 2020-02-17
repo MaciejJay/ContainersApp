@@ -1,5 +1,5 @@
-insert into user (id, user_name, first_name, last_name, e_mail)
-values (nextval('user_seq'), 'userName', 'firstName', 'lastName', 'userMail');
+insert into user (username, first_name, last_name, email)
+values ('username', 'firstName', 'lastName', 'userMail');
 
 INSERT INTO CONTAINER_SHIPOWNER (id, prefix, short_name, full_name)
 VALUES (nextval('Container_shipowner_seq'), 'APMU', 'Maersk', 'Maersk Line');

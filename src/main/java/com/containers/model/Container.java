@@ -81,7 +81,7 @@ public class Container {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return Objects.equals(noContainer, container.noContainer) &&
+        return  Objects.equals(noContainer, container.noContainer) &&
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
@@ -91,8 +91,7 @@ public class Container {
     @Override
     public int hashCode() {
         return Objects.hash(noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
-    }
-
+      
     @Override
     public String toString() {
         return "Container{" +
@@ -102,5 +101,6 @@ public class Container {
                 ", containerDamage=" + containerDamage +
                 ", containerShipowner=" + containerShipowner +
                 '}';
+
     }
 }
