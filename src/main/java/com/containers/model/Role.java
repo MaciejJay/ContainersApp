@@ -27,10 +27,6 @@ public class Role {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setAuthority(String authority) {
         this.authority = authority;
     }
