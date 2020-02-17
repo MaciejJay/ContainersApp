@@ -43,7 +43,7 @@ public class UserServiceTest {
         User user = sut.getUserByUsername("username");
 
         // then
-        assertThat(user.getUsername().equals("username"));
+        assertThat(user.getUsername().equals("username")).isNotNull();
     }
 
     @Test
@@ -63,9 +63,9 @@ public class UserServiceTest {
 
         //when
         sut.saveUser(user);
-        assertThat(sut.getUserByUsername("usernameTest")).isNotNull();
 
         // then
+        assertThat(sut.getUserByUsername("usernameTest")).isNotNull();
         sut.deleteUser("usernameTest");
         assertThatThrownBy(
                 () -> sut.getUserByUsername("usernameTest"))
@@ -83,10 +83,10 @@ public class UserServiceTest {
 
         // when
         sut.saveUser(user);
-        assertThat(user.getFirstName().equals("firstNameTest"));
+        sut.updateUser(updatedUser);
 
         // then
-        sut.updateUser(user);
-        assertThat(user.getFirstName().equals("updatedFirstNameTest"));
+        assertThat(sut.getUserByUsername(user.getUsername())).isNotNull();
+        assertThat(sut.getUserByUsername(user.getUsername())).isEqualTo(updatedUser);
     }
 }

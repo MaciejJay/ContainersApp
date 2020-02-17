@@ -28,8 +28,8 @@ public class User {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -75,7 +75,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
