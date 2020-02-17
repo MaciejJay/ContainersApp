@@ -1,11 +1,14 @@
 package com.containers.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.Objects;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 public class Container {
@@ -81,7 +84,7 @@ public class Container {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return  Objects.equals(noContainer, container.noContainer) &&
+        return Objects.equals(noContainer, container.noContainer) &&
                 Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerType, container.containerType) &&
                 Objects.equals(containerDamage, container.containerDamage) &&
@@ -102,6 +105,5 @@ public class Container {
                 ", containerDamage=" + containerDamage +
                 ", containerShipowner=" + containerShipowner +
                 '}';
-
     }
 }
