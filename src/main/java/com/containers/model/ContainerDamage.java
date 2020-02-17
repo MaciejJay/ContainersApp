@@ -14,25 +14,52 @@ public class ContainerDamage {
             sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private LocalDate addDate;
+    @Enumerated(EnumType.STRING)
     private StatusEnum containerStatus;
     private String description;
 
     @ManyToOne(targetEntity = Container.class)
     private Container container;
 
-    @OneToMany(targetEntity = Image.class)
+    @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
     private Set<Image> images;
 
-    @OneToMany(targetEntity = DamageType.class)
+    @OneToMany(targetEntity = DamageType.class, fetch = FetchType.EAGER)
     private Set<DamageType> damageTypes;
 
     @ManyToOne(targetEntity = User.class)
     private User user;
 
-    @ManyToOne(targetEntity = Container.class)
-    private Container container;
-
     public ContainerDamage() {
+    }
+
+    public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus, String description) {
+        this.id = id;
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Set<DamageType> damageTypes) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+        this.damageTypes = damageTypes;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Container container, Set<DamageType> damageTypes, User user) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+        this.container = container;
+        this.damageTypes = damageTypes;
+        this.user = user;
     }
 
     public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,

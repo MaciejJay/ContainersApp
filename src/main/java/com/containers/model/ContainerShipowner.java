@@ -16,7 +16,7 @@ public class ContainerShipowner {
     private String shortName;
     private String fullName;
 
-    @OneToMany(targetEntity = Container.class)
+    @OneToMany(targetEntity = Container.class, fetch = FetchType.EAGER)
     private Set<Container> containers;
 
     public ContainerShipowner() {

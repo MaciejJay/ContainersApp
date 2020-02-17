@@ -16,7 +16,7 @@ public class Container {
     private String containerNoPin;
     private String containerType;
 
-    @OneToMany(targetEntity = ContainerDamage.class)
+    @OneToMany(targetEntity = ContainerDamage.class, fetch = FetchType.EAGER)
     private Set<ContainerDamage> containerDamage;
 
 
