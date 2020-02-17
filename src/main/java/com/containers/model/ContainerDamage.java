@@ -2,6 +2,7 @@ package com.containers.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,29 +21,61 @@ public class ContainerDamage {
     @ManyToOne(targetEntity = Container.class)
     private Container container;
 
-    @OneToMany(targetEntity = Image.class)
+    @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
     private Set<Image> images;
 
-    @OneToMany(targetEntity = DamageType.class)
-    private Set<DamageType> damageTypes;
+    @ElementCollection
+    private Set<DamageTypeEnum> typeEnums = new HashSet<>();
 
     @ManyToOne(targetEntity = User.class)
     private User user;
 
-    @ManyToOne(targetEntity = Container.class)
-    private Container container;
-
     public ContainerDamage() {
     }
 
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
-                           Set<DamageType> damageTypes, String description, User user) {
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
+        this.description = description;
         this.container = container;
         this.images = images;
-        this.damageTypes = damageTypes;
-        this.description = description;
+        this.typeEnums = typeEnums;
+        this.user = user;
+    }
+
+    //    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
+//                           Set<DamageType> damageTypes, String description, User user) {
+//        this.addDate = addDate;
+//        this.containerStatus = containerStatus;
+//        this.container = container;
+//        this.images = images;
+//        this.damageTypes = damageTypes;
+//        this.description = description;
+//        this.user = user;
+//    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
+    }
+
+    public Set<DamageTypeEnum> getType() {
+        return typeEnums;
+    }
+
+    public void setType(Set<DamageTypeEnum> type) {
+        this.typeEnums = type;
+    }
+
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -82,13 +115,13 @@ public class ContainerDamage {
         this.images = images;
     }
 
-    public Set<DamageType> getDamageTypes() {
-        return damageTypes;
-    }
-
-    public void setDamageTypes(Set<DamageType> damageTypes) {
-        this.damageTypes = damageTypes;
-    }
+//    public Set<DamageType> getDamageTypes() {
+//        return damageTypes;
+//    }
+//
+//    public void setDamageTypes(Set<DamageType> damageTypes) {
+//        this.damageTypes = damageTypes;
+//    }
 
     public String getDescription() {
         return description;
@@ -98,10 +131,31 @@ public class ContainerDamage {
         this.description = description;
     }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        ContainerDamage that = (ContainerDamage) o;
+//        return Objects.equals(id, that.id) &&
+//                Objects.equals(addDate, that.addDate) &&
+//                containerStatus == that.containerStatus &&
+//                Objects.equals(description, that.description) &&
+//                Objects.equals(container, that.container) &&
+//                Objects.equals(images, that.images) &&
+//                Objects.equals(damageTypes, that.damageTypes) &&
+//                Objects.equals(user, that.user);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
+//    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ContainerDamage)) return false;
         ContainerDamage that = (ContainerDamage) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(addDate, that.addDate) &&
@@ -109,12 +163,26 @@ public class ContainerDamage {
                 Objects.equals(description, that.description) &&
                 Objects.equals(container, that.container) &&
                 Objects.equals(images, that.images) &&
-                Objects.equals(damageTypes, that.damageTypes) &&
+                Objects.equals(typeEnums, that.typeEnums) &&
                 Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
+        return Objects.hash(id, addDate, containerStatus, description, container, images, typeEnums, user);
+    }
+
+    @Override
+    public String toString() {
+        return "ContainerDamage{" +
+                "id=" + id +
+                ", addDate=" + addDate +
+                ", containerStatus=" + containerStatus +
+                ", description='" + description + '\'' +
+                ", container=" + container +
+                ", images=" + images +
+                ", damageType=" + typeEnums +
+                ", user=" + user +
+                '}';
     }
 }
