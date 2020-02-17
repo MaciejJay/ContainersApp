@@ -20,12 +20,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserByUsername (String userName) {
-        Optional<User> byUsername = userRepository.findByUsername(userName);
+    public User getUserByUsername (String username) {
+        Optional<User> byUsername = userRepository.findByUsername(username);
 
         if (byUsername.isPresent()) {
             return byUsername.get();
-        } else throw new UserNotFoundException("User not found");
+        } else throw new UserNotFoundException("User " + username + " not found");
     }
 
     public User updateUser (User user) {
