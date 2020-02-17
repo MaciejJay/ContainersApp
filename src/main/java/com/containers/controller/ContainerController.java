@@ -12,6 +12,4 @@ public class ContainerController {
         this.containerService = containerService;
     }
 
-
-
 }

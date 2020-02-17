@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ContainerService {
@@ -19,7 +18,6 @@ public class ContainerService {
     public ContainerService(ContainerRepository containerRepository) {
         this.containerRepository = containerRepository;
     }
-
 
     public Set<Container> findAllContainers() {
         return new HashSet<>(containerRepository.findAll());
