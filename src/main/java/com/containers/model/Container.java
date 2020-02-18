@@ -1,5 +1,8 @@
 package com.containers.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -11,10 +14,13 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
+@EqualsAndHashCode
+@ToString
 public class Container {
 
     @Id
     private String noContainer;
+    private String prefix;
     private String containerNoPin;
     private String containerType;
 
@@ -32,8 +38,9 @@ public class Container {
     public Container() {
     }
 
-    public Container(String noContainer, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
+    public Container(String noContainer, String prefix, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
         this.noContainer = noContainer;
+        this.prefix = prefix;
         this.containerNoPin = containerNoPin;
         this.containerType = containerType;
         this.containerDamage = containerDamage;
@@ -79,31 +86,11 @@ public class Container {
         this.containerShipowner = containerShipowner;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Container container = (Container) o;
-        return Objects.equals(noContainer, container.noContainer) &&
-                Objects.equals(containerNoPin, container.containerNoPin) &&
-                Objects.equals(containerType, container.containerType) &&
-                Objects.equals(containerDamage, container.containerDamage) &&
-                Objects.equals(containerShipowner, container.containerShipowner);
+    public String getPrefix() {
+        return prefix;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(noContainer, containerNoPin, containerType, containerDamage, containerShipowner);
-    }
-
-    @Override
-    public String toString() {
-        return "Container{" +
-                "noContainer='" + noContainer + '\'' +
-                ", containerNoPin='" + containerNoPin + '\'' +
-                ", containerType='" + containerType + '\'' +
-                ", containerDamage=" + containerDamage +
-                ", containerShipowner=" + containerShipowner +
-                '}';
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

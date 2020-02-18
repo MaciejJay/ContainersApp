@@ -1,6 +1,5 @@
 package com.containers.service;
 
-import com.containers.exceptions.ContainerNotFoundForShipownerException;
 import com.containers.model.Container;
 import com.containers.repository.ContainerRepository;
 import org.junit.jupiter.api.Test;
@@ -9,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -46,7 +42,7 @@ public class ContainerServiceTest {
     @Transactional
     void shouldSaveContainerInDB() {
         // given
-        Container newContainer = new Container("APMU834795", "6574894", "40", null);
+        Container newContainer = new Container("834795", "APMU", "6574894", "40", null);
         // when
         Container actual = sut.saveContainer(newContainer);
         // then
@@ -59,7 +55,7 @@ public class ContainerServiceTest {
     @Transactional
     void shouldUpdateContainer() {
         // given
-        Container updatedContainer = new Container("APMU7236423", "123456789", "40", null);
+        Container updatedContainer = new Container("723642", "APMU", "123456789", "40", null);
         // when
         Container actual = sut.updateContainer(updatedContainer);
         // then
