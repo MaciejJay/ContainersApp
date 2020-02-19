@@ -1,7 +1,7 @@
-package com.containers.utilities.xls;
+package com.containers.utilities.xssf;
 
 import com.containers.model.Container;
-import com.containers.utilities.xls.writer.XlsWriter;
+import com.containers.utilities.xssf.writer.XlsWriter;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 

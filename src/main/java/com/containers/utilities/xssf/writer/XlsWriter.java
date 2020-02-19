@@ -1,4 +1,4 @@
-package com.containers.utilities.xls.writer;
+package com.containers.utilities.xssf.writer;
 
 import com.containers.model.Container;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -12,25 +12,23 @@ import java.io.*;
 @Service
 public class XlsWriter {
 
-    //    private ContainerService containerService;
-    private final String fileInputPath = "src/main/resources/xls/Work-Estimate.xlsx";
-    private final String fileOutputPath = "src/main/resources/xls/Work-Estimate-test.xlsx";
-
-
     public XlsWriter() {
     }
 
     public void writeContainerToSheet(Container container) throws IOException, InvalidFormatException {
         OPCPackage pkg;
+        String fileInputPath = "src/main/resources/xls/Work-Estimate.xlsx";
         try (FileInputStream in = new FileInputStream(new File(fileInputPath))) {
             pkg = OPCPackage.open(in);
         }
         try (XSSFWorkbook wb = new XSSFWorkbook(pkg)) {
 
+            setLogo();
 //            setTerminal(wb, TODO give string);
             setSerialNo(wb, container);
             setPrefix(wb, container);
 
+            String fileOutputPath = "src/main/resources/xls/Work-Estimate-test.xlsx";
             try (OutputStream fileOut = new FileOutputStream(fileOutputPath)) {
                 wb.write(fileOut);
             }
