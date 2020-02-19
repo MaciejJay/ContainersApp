@@ -28,30 +28,65 @@ public class UserServiceTest {
     public void shouldAddNewUser() {
         // given
         User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "eMailTest@test.com");
+                "lastNameTest", "emailTest@test.com");
 
         // when
         User addedUser = sut.saveUser(user);
 
         // then
-        assertThat(addedUser.getId()).isEqualTo(2);
-        assertThat(userRepository.getOne(addedUser.getId())).isNotNull();
+        assertThat(addedUser.getUsername()).isEqualTo("usernameTest");
     }
 
     @Test
     public void shouldFindUserByUsername() {
         // when
-        User user = sut.getUserByUserName("userName");
+        User user = sut.getUserByUsername("username");
 
         // then
-        assertThat(user.getUserName().equals("userName"));
+        assertThat(user.getUsername().equals("username")).isNotNull();
     }
 
     @Test
     public void shouldThrowUserNotFoundException() {
         // then
         assertThatThrownBy(
-                () -> sut.getUserByUserName("thisUsernameDoesNotExist")).isInstanceOf(UserNotFoundException.class
-        );
+                () -> sut.getUserByUsername("thisUsernameDoesNotExist"))
+                .isInstanceOf(UserNotFoundException.class);
+    }
+
+    @Test
+    @Transactional
+    public void shouldDeleteUserByUsername() {
+        // given
+        User user = new User("usernameTest", "firstNameTest",
+                "lastNameTest", "emailTest@test.com");
+
+        //when
+        sut.saveUser(user);
+
+        // then
+        assertThat(sut.getUserByUsername("usernameTest")).isNotNull();
+        sut.deleteUser("usernameTest");
+        assertThatThrownBy(
+                () -> sut.getUserByUsername("usernameTest"))
+                .isInstanceOf(UserNotFoundException.class);
+    }
+
+    @Test
+    @Transactional
+    public void shouldUpdateUserByUsername() {
+        // given
+        User user = new User("usernameTest", "firstNameTest",
+                "lastNameTest", "emailTest@test.com");
+        User updatedUser = new User("usernameTest", "updatedFirstNameTest",
+                "lastNameTest", "emailTest@test.com");
+
+        // when
+        sut.saveUser(user);
+        sut.updateUser(updatedUser);
+
+        // then
+        assertThat(sut.getUserByUsername(user.getUsername())).isNotNull();
+        assertThat(sut.getUserByUsername(user.getUsername())).isEqualTo(updatedUser);
     }
 }

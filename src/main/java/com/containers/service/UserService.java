@@ -20,20 +20,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserByUserName (String userName) {
-        Optional<User> byUserName = userRepository.findByUserName(userName);
+    public User getUserByUsername (String username) {
+        Optional<User> byUsername = userRepository.findByUsername(username);
 
-        if (byUserName.isPresent()) {
-            return byUserName.get();
-        } else throw new UserNotFoundException("User not found");
+        if (byUsername.isPresent()) {
+            return byUsername.get();
+        } else throw new UserNotFoundException("User " + username + " not found");
     }
 
     public User updateUser (User user) {
-        userRepository.deleteById(user.getId());
+        userRepository.deleteByUsername(user.getUsername());
         return userRepository.save(user);
     }
 
-    public void deleteUser (Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser (String username) {
+        userRepository.deleteByUsername(username);
     }
 }

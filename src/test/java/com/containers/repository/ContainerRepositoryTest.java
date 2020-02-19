@@ -1,6 +1,6 @@
 package com.containers.repository;
 
-import com.containers.model.User;
+import com.containers.model.Container;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class UserRepositoryTest {
+public class ContainerRepositoryTest {
 
     @Autowired
-    private UserRepository sut;
+    private ContainerRepository sut;
 
     @Test
     public void shouldReturnOptionalOfUsersByUserNames() {
         // when
-        Optional<User> actual = sut.findByUsername("userName");
+        Optional<Container> actual = sut.findByNoContainer("APMU7236487");
 
         // then
         assertThat(actual).isPresent();

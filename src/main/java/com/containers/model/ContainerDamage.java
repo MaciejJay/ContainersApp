@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 public class ContainerDamage {
 
@@ -19,7 +21,8 @@ public class ContainerDamage {
     private StatusEnum containerStatus;
     private String description;
 
-    @ManyToOne(targetEntity = Container.class)
+    @ManyToOne(targetEntity = Container.class,
+            cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private Container container;
 
     @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
