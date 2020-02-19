@@ -22,6 +22,7 @@ public class ContainerShipowner {
     @OneToMany(targetEntity = Container.class,
             fetch = EAGER,
             cascade = ALL)
+  
     private Set<Container> containers;
 
     public ContainerShipowner() {

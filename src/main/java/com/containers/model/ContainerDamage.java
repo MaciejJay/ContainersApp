@@ -16,7 +16,8 @@ public class ContainerDamage {
             sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private LocalDate addDate;
-
+  
+    @Enumerated(EnumType.STRING)
     private StatusEnum containerStatus;
     private String description;
 
@@ -34,6 +35,35 @@ public class ContainerDamage {
     private User user;
 
     public ContainerDamage() {
+    }
+
+    public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus, String description) {
+        this.id = id;
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Set<DamageType> damageTypes) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+        this.damageTypes = damageTypes;
+    }
+
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Container container, Set<DamageType> damageTypes, User user) {
+        this.addDate = addDate;
+        this.containerStatus = containerStatus;
+        this.description = description;
+        this.container = container;
+        this.damageTypes = damageTypes;
+        this.user = user;
     }
 
     public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,

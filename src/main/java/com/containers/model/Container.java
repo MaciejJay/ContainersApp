@@ -21,6 +21,7 @@ public class Container {
     @OneToMany(targetEntity = ContainerDamage.class,
             fetch = EAGER,
             cascade = ALL)
+  
     private Set<ContainerDamage> containerDamage;
 
 
