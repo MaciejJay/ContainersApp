@@ -25,9 +25,9 @@ public class ContainerServiceTest {
     @Test
     public void shouldReturnOptionalOfContainerByNoContainer() {
         // when
-        Container actual = sut.findContainerById("APMU7236487");
+        Container actual = sut.findContainerById("123456789");
         // then
-        assertThat(actual).extracting(Container :: getNoContainer).isEqualTo("APMU7236487");
+        assertThat(actual).extracting(Container :: getNoContainer).isEqualTo("123456789");
     }
 
     @Test
@@ -35,18 +35,18 @@ public class ContainerServiceTest {
         // when
         Set<Container> actual = sut.findAllContainers();
         // then
-        assertThat(actual).size().isEqualTo(3);
+        assertThat(actual).size().isEqualTo(1);
     }
 
     @Test
     @Transactional
     void shouldSaveContainerInDB() {
         // given
-        Container newContainer = new Container("834795", "APMU", "6574894", "40", null);
+        Container newContainer = new Container("834795", "1234", "40", null );
         // when
         Container actual = sut.saveContainer(newContainer);
         // then
-        assertThat(newContainer.getNoContainer()).isEqualTo("APMU834795");
+        assertThat(newContainer.getNoContainer()).isEqualTo("834795");
         assertThat(containerRepository.getOne(newContainer.getNoContainer())).isNotNull();
 
     }
@@ -55,7 +55,7 @@ public class ContainerServiceTest {
     @Transactional
     void shouldUpdateContainer() {
         // given
-        Container updatedContainer = new Container("723642", "APMU", "123456789", "40", null);
+        Container updatedContainer = new Container("123456789", "1234", "40", null);
         // when
         Container actual = sut.updateContainer(updatedContainer);
         // then
@@ -67,7 +67,7 @@ public class ContainerServiceTest {
         // when
         Set<Container> actual = sut.findByContainersShipownerId(1L);
         // then
-        assertThat(actual).hasSize(3);
+        assertThat(actual).hasSize(1);
     }
 
     //TODO: test - shouldThrowContainerNotFoundForShipownerException()
