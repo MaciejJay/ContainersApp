@@ -44,7 +44,7 @@ public class ContainerService {
     }
 
     public Set<Container> findByContainersShipownerId(Long id) {
-        Optional<Set<Container>> shipownerContainers = containerRepository.findByContainerShipowner_Id(id);
+        Optional<Set<Container>> shipownerContainers = containerRepository.findByShipowner_Id(id);
 
         if (shipownerContainers.isPresent() ) {
             return new HashSet<>(shipownerContainers.get());

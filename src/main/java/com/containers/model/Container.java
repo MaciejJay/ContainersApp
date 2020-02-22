@@ -1,7 +1,6 @@
 package com.containers.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,13 +12,10 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
-@EqualsAndHashCode
-@ToString
 public class Container {
 
     @Id
     private String noContainer;
-    private String prefix;
     private String containerNoPin;
     private String containerType;
 
@@ -29,18 +25,16 @@ public class Container {
 
     private Set<ContainerDamage> containerDamage;
 
-
-    @ManyToOne(targetEntity = ContainerShipowner.class
+    @ManyToOne(targetEntity = Shipowner.class
             , fetch = EAGER,
             cascade = {DETACH, MERGE, PERSIST, REFRESH})
-    private ContainerShipowner containerShipowner;
+    private Shipowner shipowner;
 
     public Container() {
     }
 
-    public Container(String noContainer, String prefix, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
+    public Container(String noContainer, String containerNoPin, String containerType, Set<ContainerDamage> containerDamage) {
         this.noContainer = noContainer;
-        this.prefix = prefix;
         this.containerNoPin = containerNoPin;
         this.containerType = containerType;
         this.containerDamage = containerDamage;
@@ -78,19 +72,11 @@ public class Container {
         this.containerDamage = containerDamage;
     }
 
-    public ContainerShipowner getContainerShipowner() {
-        return containerShipowner;
+    public Shipowner getShipowner() {
+        return shipowner;
     }
 
-    public void setContainerShipowner(ContainerShipowner containerShipowner) {
-        this.containerShipowner = containerShipowner;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
+    public void setShipowner(Shipowner shipowner) {
+        this.shipowner = shipowner;
     }
 }

@@ -10,5 +10,5 @@ public interface ContainerRepository extends JpaRepository<Container, String> {
 
     Optional<Container> findByNoContainer(String noContainer);
 
-    Optional<Set<Container>> findByContainerShipowner_Id(Long id);
+    Optional<Set<Container>> findByShipowner_Id(Long id);
 }

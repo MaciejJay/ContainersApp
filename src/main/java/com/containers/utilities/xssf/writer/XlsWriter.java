@@ -1,9 +1,10 @@
 package com.containers.utilities.xssf.writer;
 
 import com.containers.model.Container;
+import com.containers.utilities.xssf.XlsxFacade;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,13 @@ import java.io.*;
 @Service
 public class XlsWriter {
 
-    public XlsWriter() {
+    private XlsxFacade xlsxFacade;
+
+    public XlsWriter(XlsxFacade xlsxFacade) {
+        this.xlsxFacade = xlsxFacade;
     }
 
-    public void writeContainerToSheet(Container container) throws IOException, InvalidFormatException {
+    public void writeContainerToSheet() throws IOException, InvalidFormatException {
         OPCPackage pkg;
         String fileInputPath = "src/main/resources/xls/Work-Estimate.xlsx";
         try (FileInputStream in = new FileInputStream(new File(fileInputPath))) {
@@ -23,10 +27,10 @@ public class XlsWriter {
         }
         try (XSSFWorkbook wb = new XSSFWorkbook(pkg)) {
 
-            setLogo();
-//            setTerminal(wb, TODO give string);
-            setSerialNo(wb, container);
-            setPrefix(wb, container);
+
+            setLogo(wb, xlsxFacade.getLogo("loconi"));
+            setSerialNo(wb, xlsxFacade.getContainerSerialNo("123456789"));
+            setPrefix(wb, xlsxFacade.getShipownerPrefix(1L));
 
             String fileOutputPath = "src/main/resources/xls/Work-Estimate-test.xlsx";
             try (OutputStream fileOut = new FileOutputStream(fileOutputPath)) {
@@ -38,8 +42,26 @@ public class XlsWriter {
 
     // (rows)(columns)
     //(4-5) - (1-4)
-    public void setLogo() {
-        // TODO: 18.02.2020
+    public void setLogo(XSSFWorkbook wb, byte[] image) {
+        int pictureIdx = wb.addPicture(image, Workbook.PICTURE_TYPE_JPEG);
+
+        CreationHelper helper = wb.getCreationHelper();
+        var sheet = wb.getSheetAt(0);
+
+        // Create the drawing patriarch.  This is the top level container for all shapes.
+        Drawing drawing = sheet.createDrawingPatriarch();
+
+        //add a picture shape
+        ClientAnchor anchor = helper.createClientAnchor();
+
+        //set top-left corner of the picture,
+        //subsequent call of Picture#resize() will operate relative to it
+        anchor.setCol1(1);
+        anchor.setRow1(4);
+        Picture pict = drawing.createPicture(anchor, pictureIdx);
+
+        //auto-size picture relative to its top-left corner
+        pict.resize();
     }
 
     //(7) - (1-4)
@@ -93,19 +115,15 @@ public class XlsWriter {
     }
 
     //(6) - (7-8)
-    public XSSFSheet setPrefix(XSSFWorkbook wb, Container container) {
+    public void setPrefix(XSSFWorkbook wb, String shipownerPrefix) {
         var sheet = wb.getSheetAt(0);
-        var prefix = container.getPrefix();
-        sheet.getRow(6).getCell(7).setCellValue(prefix);
-        return sheet;
+        sheet.getRow(6).getCell(7).setCellValue(shipownerPrefix);
     }
 
     //(6) - (9-11)
-    public XSSFSheet setSerialNo(XSSFWorkbook wb, Container container) {
+    public void setSerialNo(XSSFWorkbook wb, String containerSerialNo) {
         var sheet = wb.getSheetAt(0);
-        var noContainer = container.getNoContainer();
-        sheet.getRow(6).getCell(9).setCellValue(noContainer);
-        return sheet;
+        sheet.getRow(6).getCell(9).setCellValue(containerSerialNo);
     }
 
     //(6) - (12-13)
@@ -156,7 +174,6 @@ public class XlsWriter {
     public void setRepairMaterialCost() {
         // TODO: 18.02.2020
     }
-
 
 
 }

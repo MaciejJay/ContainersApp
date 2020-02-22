@@ -18,12 +18,9 @@ class XlsServiceTest {
 
     @Test
     void shouldWriteValueInSheet() {
-        // given
-        var actual = containerService.findContainerById("236487");
         // when
-        sut.runWriter(actual);
+        sut.runWriter();
         // then
-
     }
 
 }

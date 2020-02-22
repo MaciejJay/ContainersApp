@@ -1,6 +1,5 @@
 package com.containers.utilities.xssf;
 
-import com.containers.model.Container;
 import com.containers.utilities.xssf.writer.XlsWriter;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,7 @@ public class XlsService {
     }
 
     @SneakyThrows
-    public void runWriter(Container container) {
-        xlsWriter.writeContainerToSheet(container);
+    public void runWriter() {
+        xlsWriter.writeContainerToSheet();
     }
-
-
 }
