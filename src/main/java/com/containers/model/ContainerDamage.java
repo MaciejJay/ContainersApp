@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.*;
-
 @Entity
 public class ContainerDamage {
 
@@ -16,58 +14,28 @@ public class ContainerDamage {
             sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private LocalDate addDate;
-  
+
     @Enumerated(EnumType.STRING)
     private StatusEnum containerStatus;
     private String description;
+    private String PIN;
 
-    @ManyToOne(targetEntity = Container.class,
-            cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = Container.class)
     private Container container;
 
     @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
     private Set<Image> images;
 
-    @OneToMany(targetEntity = DamageType.class, fetch = FetchType.EAGER)
-    private Set<DamageType> damageTypes;
+    @ElementCollection(targetClass = DamageTypeEnum.class)
+    @CollectionTable(name = "damage_type_mapping",
+            joinColumns = @JoinColumn(name = "damage_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<DamageTypeEnum> typeEnums = new HashSet<>();
 
     @ManyToOne(targetEntity = User.class)
     private User user;
 
-    public ContainerDamage() {
-    }
-
-    public ContainerDamage(Long id, LocalDate addDate, StatusEnum containerStatus, String description) {
-        this.id = id;
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.description = description;
-    }
-
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description) {
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.description = description;
-    }
-
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Set<DamageType> damageTypes) {
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.description = description;
-        this.damageTypes = damageTypes;
-    }
-
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Container container, Set<DamageType> damageTypes, User user) {
-        this.addDate = addDate;
-        this.containerStatus = containerStatus;
-        this.description = description;
-        this.container = container;
-        this.damageTypes = damageTypes;
-        this.user = user;
-    }
-
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
-                           Set<DamageType> damageTypes, String description, User user) {
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, String PIN, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
         this.container = container;
@@ -129,23 +97,41 @@ public class ContainerDamage {
         this.description = description;
     }
 
+
+    public String getPIN() {
+        return PIN;
+    }
+
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
+    }
+
+    public Set<DamageTypeEnum> getTypeEnums() {
+        return typeEnums;
+    }
+
+    public void setTypeEnums(Set<DamageTypeEnum> typeEnums) {
+        this.typeEnums = typeEnums;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ContainerDamage)) return false;
         ContainerDamage that = (ContainerDamage) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(addDate, that.addDate) &&
                 containerStatus == that.containerStatus &&
                 Objects.equals(description, that.description) &&
+                Objects.equals(PIN, that.PIN) &&
                 Objects.equals(container, that.container) &&
                 Objects.equals(images, that.images) &&
-                Objects.equals(damageTypes, that.damageTypes) &&
+                Objects.equals(typeEnums, that.typeEnums) &&
                 Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
+        return Objects.hash(id, addDate, containerStatus, description, PIN, container, images, typeEnums, user);
     }
 }
