@@ -1,4 +1,4 @@
-package com.containers.repository.service;
+package com.containers.service;
 
 import com.containers.model.ContainerDamage;
 import com.containers.model.StatusEnum;
@@ -26,11 +26,12 @@ public class ContainerDamageServiceTest {
     private ContainerDamageRepository repository;
 
     @Test
+    @Transactional
     public void shouldReturnAllDamage() {
         //when
         Set<ContainerDamage> actual = sut.findAllDamage();
         //then
-        assertThat(actual).hasSize(1);
+        assertThat(actual.size()).isEqualTo(1);
     }
 
     @Test
@@ -38,7 +39,8 @@ public class ContainerDamageServiceTest {
     public void shouldAddNewDamageToContainer() {
         //given
         ContainerDamage newDamage = new ContainerDamage
-                (LocalDate.now(), StatusEnum.CONTAINER_USABLE, "Dziura w podlodze");
+                (LocalDate.now(), StatusEnum.CONTAINER_USABLE, "Dziura w podlodze",
+                        null, null, null, null, null);
 
         //when
         ContainerDamage addDamage = sut.addNewContainerDamage(newDamage);
@@ -52,7 +54,8 @@ public class ContainerDamageServiceTest {
     public void shouldUpdateContainerDamage() {
         //given
         ContainerDamage newDamage = new ContainerDamage
-                (LocalDate.now(), StatusEnum.CONTAINER_UNUSABLE, "Uszkodzony rygiel");
+                (LocalDate.now(), StatusEnum.CONTAINER_UNUSABLE, "Uszkodzony rygiel",
+                        null, null, null, null, null);
         //when
 
         ContainerDamage containerDamage = sut.updateContainerDamage(newDamage);
