@@ -17,7 +17,7 @@
     </table>
 </div>
 
-<a href="/index">Back to home page</a>
+<a href="/menu">Back to home page</a>
 
 </body>
 </html>

@@ -21,7 +21,7 @@ public class ContainerDamage {
     private String description;
     private String PIN;
 
-    @ManyToOne(targetEntity = Container.class)
+    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY)
     private Container container;
 
     @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
@@ -39,13 +39,15 @@ public class ContainerDamage {
     public ContainerDamage() {
     }
 
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, String PIN, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, String PIN,
+                           Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
         this.container = container;
         this.images = images;
         this.typeEnums = typeEnums;
         this.description = description;
+        this.PIN = PIN;
         this.user = user;
     }
 
@@ -138,6 +140,7 @@ public class ContainerDamage {
                 Objects.equals(typeEnums, that.typeEnums) &&
                 Objects.equals(user, that.user);
     }
+
 
     @Override
     public int hashCode() {
