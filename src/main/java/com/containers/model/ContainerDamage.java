@@ -2,6 +2,7 @@ package com.containers.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -35,15 +36,20 @@ public class ContainerDamage {
     @ManyToOne(targetEntity = User.class)
     private User user;
 
+    public ContainerDamage() {
+    }
+
     public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, String PIN, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
         this.container = container;
         this.images = images;
-        this.damageTypes = damageTypes;
+        this.typeEnums = typeEnums;
         this.description = description;
         this.user = user;
     }
+
+
 
     public Container getContainerId() {
         return container;
@@ -81,12 +87,16 @@ public class ContainerDamage {
         this.images = images;
     }
 
-    public Set<DamageType> getDamageTypes() {
-        return damageTypes;
+    public Container getContainer() {
+        return container;
     }
 
-    public void setDamageTypes(Set<DamageType> damageTypes) {
-        this.damageTypes = damageTypes;
+    public void setContainer(Container container) {
+        this.container = container;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {

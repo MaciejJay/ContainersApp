@@ -75,7 +75,7 @@ public class AppPdfWriter {
             Paragraph titleParagraph = DocTitle.getTitle();
 
 
-            damage = new ContainerDamage(LocalDate.now(), StatusEnum.CONTAINER_UNUSABLE, "Description", container, null, containerDamage, user);
+            damage = new ContainerDamage(LocalDate.now(), StatusEnum.CONTAINER_UNUSABLE, "Description","234", container, null, containerDamage, user);
             user = new User("Admin", "Adam", "Adminowy", "a@a.pl");
             containerDamageSet.add(damage);
             container = new Container("CNUM123", "PIN123", "40", containerDamageSet);
