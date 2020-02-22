@@ -1,11 +1,14 @@
 <html>
+<head>
+    <title>Welcome</title>
+</head>
 <body>
 <div class="outside" style="
         position: relative;">
 
-    <img src="src/main/webapp/WEB-INF/views/containerhome.jpg" title="containerHome" style="
-        max-height: 100%;
-        width: auto;
+    <img src="/images/containerhome.jpg" alt="container"  title="containerHome" style="
+        height: 100%;
+        width: 100%;
         left: 0;
         top: 0;
         z-index: 1;">
