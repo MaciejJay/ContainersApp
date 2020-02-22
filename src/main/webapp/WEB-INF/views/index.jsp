@@ -1,6 +1,36 @@
 <html>
 <head>
     <title>Welcome</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            font-size: 17px;
+        }
+
+        .outside {
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .outside img {
+            vertical-align: middle;
+        }
+
+        .outside .inside {
+            position: absolute;
+            bottom: 0;
+            background: rgb(0, 0, 0);
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            width: 100%;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="outside" style="
@@ -26,8 +56,6 @@
 
     <div>
         <form action="/login" style="background-size: cover;
-        /*top: 20px;*/
-        /*bottom: 20px;*/
         float: left;">
             <button type="submit" class="login">Login</button>
         </form>

@@ -58,4 +58,9 @@ public class ContainerController {
     public ModelAndView editUser(){
         return new ModelAndView("editUser");
     }
+
+    @GetMapping("/container/add/model")
+    public ModelAndView getContainerModelPage() {
+        return new ModelAndView("containerModel");
+    }
 }
