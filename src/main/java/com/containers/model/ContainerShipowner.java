@@ -15,7 +15,6 @@ public class ContainerShipowner {
     @GeneratedValue(generator = "ContainerShipownerSeq")
     @SequenceGenerator(name = "ContainerSeq", sequenceName = "Container_shipowner_seq", allocationSize = 1)
     private Long id;
-    private String prefix;
     private String shortName;
     private String fullName;
 
@@ -29,14 +28,6 @@ public class ContainerShipowner {
 
     public Long getId() {
         return id;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
     }
 
     public String getShortName() {
@@ -69,7 +60,6 @@ public class ContainerShipowner {
         if (o == null || getClass() != o.getClass()) return false;
         ContainerShipowner that = (ContainerShipowner) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(prefix, that.prefix) &&
                 Objects.equals(shortName, that.shortName) &&
                 Objects.equals(fullName, that.fullName) &&
                 Objects.equals(containers, that.containers);
@@ -77,14 +67,13 @@ public class ContainerShipowner {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, prefix, shortName, fullName, containers);
+        return Objects.hash(id, shortName, fullName, containers);
     }
 
     @Override
     public String toString() {
         return "ContainerShipowner{" +
                 "id=" + id +
-                ", prefix='" + prefix + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", containers=" + containers +
