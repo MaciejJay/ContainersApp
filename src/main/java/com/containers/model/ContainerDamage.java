@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
+//@Entity
 public class ContainerDamage {
 
-    @Id
+    //@Id
     @GeneratedValue(generator = "damageSeq")
     @SequenceGenerator(name = "damageSeq",
             sequenceName = "damage_seq", allocationSize = 1)
@@ -17,6 +17,7 @@ public class ContainerDamage {
     private LocalDate addDate;
     private StatusEnum containerStatus;
     private String description;
+    private String PIN;
 
     @ManyToOne(targetEntity = Container.class)
     private Container container;
@@ -24,23 +25,27 @@ public class ContainerDamage {
     @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
     private Set<Image> images;
 
-    @ElementCollection
+    @ElementCollection(targetClass = DamageTypeEnum.class)
+    @CollectionTable(name = "damage_type_mapping",
+            joinColumns = @JoinColumn(name = "damage_id"))
+    @Enumerated(EnumType.STRING)
     private Set<DamageTypeEnum> typeEnums = new HashSet<>();
 
     @ManyToOne(targetEntity = User.class)
     private User user;
 
-    public ContainerDamage() {
-    }
-
-    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
+    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, String description, String PIN, Container container, Set<Image> images, Set<DamageTypeEnum> typeEnums, User user) {
         this.addDate = addDate;
         this.containerStatus = containerStatus;
         this.description = description;
+        this.PIN = PIN;
         this.container = container;
         this.images = images;
         this.typeEnums = typeEnums;
         this.user = user;
+    }
+
+    public ContainerDamage() {
     }
 
     //    public ContainerDamage(LocalDate addDate, StatusEnum containerStatus, Container container, Set<Image> images,
@@ -131,26 +136,22 @@ public class ContainerDamage {
         this.description = description;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        ContainerDamage that = (ContainerDamage) o;
-//        return Objects.equals(id, that.id) &&
-//                Objects.equals(addDate, that.addDate) &&
-//                containerStatus == that.containerStatus &&
-//                Objects.equals(description, that.description) &&
-//                Objects.equals(container, that.container) &&
-//                Objects.equals(images, that.images) &&
-//                Objects.equals(damageTypes, that.damageTypes) &&
-//                Objects.equals(user, that.user);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, addDate, containerStatus, description, container, images, damageTypes, user);
-//    }
 
+    public String getPIN() {
+        return PIN;
+    }
+
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
+    }
+
+    public Set<DamageTypeEnum> getTypeEnums() {
+        return typeEnums;
+    }
+
+    public void setTypeEnums(Set<DamageTypeEnum> typeEnums) {
+        this.typeEnums = typeEnums;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -161,6 +162,7 @@ public class ContainerDamage {
                 Objects.equals(addDate, that.addDate) &&
                 containerStatus == that.containerStatus &&
                 Objects.equals(description, that.description) &&
+                Objects.equals(PIN, that.PIN) &&
                 Objects.equals(container, that.container) &&
                 Objects.equals(images, that.images) &&
                 Objects.equals(typeEnums, that.typeEnums) &&
@@ -169,20 +171,6 @@ public class ContainerDamage {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addDate, containerStatus, description, container, images, typeEnums, user);
-    }
-
-    @Override
-    public String toString() {
-        return "ContainerDamage{" +
-                "id=" + id +
-                ", addDate=" + addDate +
-                ", containerStatus=" + containerStatus +
-                ", description='" + description + '\'' +
-                ", container=" + container +
-                ", images=" + images +
-                ", damageType=" + typeEnums +
-                ", user=" + user +
-                '}';
+        return Objects.hash(id, addDate, containerStatus, description, PIN, container, images, typeEnums, user);
     }
 }

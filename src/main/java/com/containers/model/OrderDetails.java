@@ -11,7 +11,7 @@ public class OrderDetails {
     @SequenceGenerator(name = "orderDetailsSeq", sequenceName = "order_details_seq", allocationSize = 1)
     private Long id;
     private boolean isIn;
-    private Long orderNumber;
+    private String orderNumber;
     private String truckNumber;
     private String trailerNumber;
     private String wagonNumber;
@@ -22,7 +22,7 @@ public class OrderDetails {
     public OrderDetails() {
     }
 
-    public OrderDetails(boolean isIn, Long orderNumber, String truckNumber, String trailerNumber, String wagonNumber, ContainerDamage containerDamage) {
+    public OrderDetails(boolean isIn, String orderNumber, String truckNumber, String trailerNumber, String wagonNumber, ContainerDamage containerDamage) {
         this.isIn = isIn;
         this.orderNumber = orderNumber;
         this.truckNumber = truckNumber;
@@ -39,19 +39,21 @@ public class OrderDetails {
         this.id = id;
     }
 
-    public boolean isIn() {
+    public boolean getIsIn() {
         return isIn;
     }
+
+
 
     public void setIn(boolean in) {
         isIn = in;
     }
 
-    public Long getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Long orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 

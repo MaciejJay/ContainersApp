@@ -17,6 +17,7 @@ public class DocTitle {
         Phrase phrase = new Phrase(titleChunk);
 
         Paragraph titleParagraph = new Paragraph();
+        titleParagraph.setSpacingAfter(10F);
         titleParagraph.add(phrase);
         titleParagraph.setAlignment(Element.ALIGN_CENTER);
         return titleParagraph;
