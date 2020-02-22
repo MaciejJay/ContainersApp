@@ -9,11 +9,10 @@ import java.sql.Blob;
 public class Image {
 
     @Id
-
     @GeneratedValue(generator = "imageSeq")
     @SequenceGenerator(name = "imageSeq", sequenceName = "image_seq", allocationSize = 1)
     private Long id;
-//    private String url;
+    //    private String url;
     private Side side;
     @Lob
     private Blob image;

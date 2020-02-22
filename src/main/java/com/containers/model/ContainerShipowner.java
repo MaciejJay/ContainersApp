@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 public class ContainerShipowner {
@@ -21,6 +21,7 @@ public class ContainerShipowner {
     @OneToMany(targetEntity = Container.class,
             fetch = EAGER,
             cascade = ALL)
+
     private Set<Container> containers;
 
     public ContainerShipowner() {

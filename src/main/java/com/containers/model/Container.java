@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import java.util.Objects;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
@@ -27,6 +26,7 @@ public class Container {
     @OneToMany(targetEntity = ContainerDamage.class,
             fetch = EAGER,
             cascade = ALL)
+
     private Set<ContainerDamage> containerDamage;
 
 

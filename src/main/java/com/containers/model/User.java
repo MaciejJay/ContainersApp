@@ -1,7 +1,8 @@
 package com.containers.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 
