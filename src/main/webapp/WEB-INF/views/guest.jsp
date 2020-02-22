@@ -20,7 +20,7 @@
     </table>
 </form:form>
 
-<a href="/index">Back to home page</a>
+<a href="/">Back to home page</a>
 
 </body>
 </html>

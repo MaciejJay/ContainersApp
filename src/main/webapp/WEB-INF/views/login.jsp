@@ -7,7 +7,7 @@
 <body>
 
 <table>
-    <form action="/containerPage">
+    <form action="/menu">
         <input type="text" placeholder="Username" name="login" required>
         <p style="color: red;">
         </p>
@@ -18,7 +18,7 @@
     </form>
 </table>
 
-<a href="/index">Back to home page</a>
+<a href="/">Back to home page</a>
 
 </body>
 </html>
