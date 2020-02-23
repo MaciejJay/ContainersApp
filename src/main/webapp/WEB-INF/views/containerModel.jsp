@@ -751,35 +751,25 @@
 </div>
 
 <table style="top: 20px; left: 20px;">
-    <label>Bent</label>
-    <input type="checkbox" name="Bent"/>
+    <label><input type="checkbox" name="Bent"> Bent</label>
     <br/>
-    <label>Broken</label>
-    <input type="checkbox" name="Broken"/>
+    <label><input type="checkbox" name="Broken"> Broken</label>
     <br/>
-    <label>Cracked</label>
-    <input type="checkbox" name="Cracked"/>
+    <label><input type="checkbox" name="Cracked"> Cracked</label>
     <br/>
-    <label>Hole</label>
-    <input type="checkbox" name="Hole"/>
+    <label><input type="checkbox" name="Hole"> Hole</label>
     <br/>
-    <label>Missing</label>
-    <input type="checkbox" name="Missing"/>
+    <label><input type="checkbox" name="Missing"> Missing</label>
     <br/>
-    <label>Bruise</label>
-    <input type="checkbox" name="Bruise"/>
+    <label><input type="checkbox" name="Bruise"> Bruise</label>
     <br/>
-    <label>Cut</label>
-    <input type="checkbox" name="Cut"/>
+    <label><input type="checkbox" name="Cut"> Cut</label>
     <br/>
-    <label>Dent</label>
-    <input type="checkbox" name="Dent"/>
+    <label><input type="checkbox" name="Dent"> Dent</label>
     <br/>
-    <label>Loose</label>
-    <input type="checkbox" name="Loose"/>
+    <label><input type="checkbox" name="Loose"> Loose</label>
     <br/>
-    <label>Rusty</label>
-    <input type="checkbox" name="Rusty"/>
+    <label><input type="checkbox" name="Rusty"> Rusty</label>
 </table>
 
 <table>
@@ -796,7 +786,8 @@
 
 <form action="">
     <button type="submit" class="submit">Save to db</button>
-    <button type="submit" class="clear">Save and print</button>
+    <button type="submit" class="submit">Save and print</button>
+    <button type="submit" class="submit">Return to first page</button>
 </form>
 
 <a href="/menu">Back to home page</a>

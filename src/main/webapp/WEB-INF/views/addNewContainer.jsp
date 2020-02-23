@@ -9,48 +9,26 @@
 <table style="top: 20px;">
     <h1>Assessment of the technical condition of the container</h1>
 </table>
+<form action="/container/add/model">
 <table style="left: 20px;">
-    <label>In: </label>
-    <input type="checkbox" name="In"/>
-    <label>Out: </label>
-    <input type="checkbox" name="Out"/>
-    <br/>
-    <label>Date: </label>
-    <input type="date" name="Date"/>
-    <br/>
-    <label>20dv: </label>
-    <input type="checkbox" name="20dv"/>
-    <label>40dv: </label>
-    <input type="checkbox" name="40dv"/>
-    <label>40hc: </label>
-    <input type="checkbox" name="40hc"/>
-    <br/>
-    <label>Container Number: </label>
-    <input type="text" name="ContainerNo"/>
-    <br/>
+    <p>Gate: <label><input type="radio" name="Gate"> In</label>
+             <label><input type="radio" name="Gate"> Out</label></p>
+    <p>Date: <input type="date" name="Date"></p>
+    <p>Size: <label><input type="radio" name="Size"> 20dv</label>
+             <label><input type="radio" name="Size"> 40dv</label>
+             <label><input type="radio" name="Size"> 40hc</label></p>
+    <p>Container Number: <input type="text" name="ContainerNo" required="required"/> </p>
+    <p>Order Number: <input type="text" name="OrderNo"/></p>
+    <p>Last Name: <input type="text" name="Last Name"/></p>
+    <p>Truck Number: <input type="text" name="TruckNo"/></p>
+    <p>Chassis Number: <input type="text" name="ChassisNo"/></p>
+    <p>Wagon Number: <input type="text" name="WagonNo"/></p>
 </table>
 
-<table style="bottom: 20px; left: 20px;">
-    <label>Order Number: </label>
-    <input type="text" name="OrderNo"/>
-    <br/>
-    <label>Last Name: </label>
-    <input type="text" name="Last Name"/>
-    <br/>
-    <label>Truck Number: </label>
-    <input type="text" name="TruckNo"/>
-    <br/>
-    <label>Chassis Number: </label>
-    <input type="text" name="ChassisNo"/>
-    <br/>
-    <label>Waggon Number: </label>
-    <input type="text" name="WaggonNo"/>
-</table>
-<form action="/container/add/model">
     <button type="submit" class="submit"> Submit</button>
     <button type="reset" class="clear">Clear</button>
 </form>
-
+<br/>
 <a href="/menu">Back to home page</a>
 
 </body>
