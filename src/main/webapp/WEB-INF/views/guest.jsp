@@ -8,11 +8,11 @@
 
 <form:form method="POST" modelAttribute="user">
     <table>
-        <form action="/findContainer">
-            <input type="text" placeholder="containerNo" name="containerNo" required>
+        <form action="/container/find">
+            <input type="text" placeholder="Container Number" name="containerNo" required>
             <p style="color: red;">
             </p>
-            <input type="password" placeholder="NoPin" name="NoPin" required>
+            <input type="password" placeholder="PIN Number" name="NoPin" required>
             <p style="color: red;">
             </p>
             <button type="submit">Find Container</button>

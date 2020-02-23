@@ -7,25 +7,28 @@
             box-sizing: border-box;
         }
 
+        body, html {
+            margin: 0;
+        }
+
         body {
-            font-family: Arial;
+            font-family: Arial, serif;
             font-size: 17px;
         }
 
         .outside {
             position: relative;
-            margin: 0 auto;
         }
 
         .outside img {
-            vertical-align: middle;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
-        .outside .inside {
+        .inside {
             position: absolute;
             bottom: 0;
-            background: rgb(0, 0, 0);
-            background: rgba(0, 0, 0, 0.5);
             color: #f1f1f1;
             width: 100%;
             padding: 20px;
@@ -36,35 +39,33 @@
 <div class="outside" style="
         position: relative;">
 
-    <img src="/images/containerhome.jpg" alt="container"  title="containerHome" style="
+    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
         height: 100%;
         width: 100%;
         left: 0;
         top: 0;
-        z-index: 1;">
+        z-index: auto;">
 
-    <div class="inside" style="position: absolute;
-         top: 20px;
+    <div class="inside"
+         style="position: absolute;
+         top: 280px;
          background-size: cover;
-         background-color: black;
          -webkit-background-clip: text;
-         padding-left: 20px;
-         padding-right: 20px;">
-    </div>
+         padding-left: 20%;
+         padding-right: 20%;"
+    >
 
-    <h1>Welcome on our site</h1>
+        <div>
+            <a href="/login">
+            <img border="0" alt="Login" src="/images/loginButton.png" width="250" height="130" style="float: left;">
+            </a>
+        </div>
 
-    <div>
-        <form action="/login" style="background-size: cover;
-        float: left;">
-            <button type="submit" class="login">Login</button>
-        </form>
-    </div>
-
-    <div>
-        <form action="/guest" style="background-size: cover; float: right;">
-            <button type="submit" class="guest">Guest</button>
-        </form>
+        <div>
+            <a href="/guest">
+                <img border="0" alt="Login" src="/images/guestButton.png" width="250" height="130" style="float: right;">
+            </a>
+        </div>
     </div>
 </div>
 </body>

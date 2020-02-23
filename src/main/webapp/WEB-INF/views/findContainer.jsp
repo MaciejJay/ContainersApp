@@ -6,11 +6,9 @@
 <html lang="en">
 <body>
 
-    <table>
-        <h1>Here you will be able to check what is happening with your container</h1>
-    </table>
+<h1>Here you will be able to check what is happening with your container</h1>
 
-<a href="/menu">Back to home page</a>
+<a href="/guest">Back to home page</a>
 
 </body>
 </html>

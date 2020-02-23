@@ -15,7 +15,6 @@
     <li><a href="/email/send">Send email</a></li>
 </ol>
 
-
 <h3>Menu for admins</h3>
 <h4>This will not be visible for users. I'll implement it later</h4>
 <ol>
