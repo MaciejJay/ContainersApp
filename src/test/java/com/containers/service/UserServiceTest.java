@@ -28,7 +28,7 @@ public class UserServiceTest {
     public void shouldAddNewUser() {
         // given
         User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "emailTest@test.com");
+                "lastNameTest", "emailTest@test.com", null);
 
         // when
         User addedUser = sut.saveUser(user);
@@ -59,7 +59,7 @@ public class UserServiceTest {
     public void shouldDeleteUserByUsername() {
         // given
         User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "emailTest@test.com");
+                "lastNameTest", "emailTest@test.com", null);
 
         //when
         sut.saveUser(user);
@@ -77,9 +77,9 @@ public class UserServiceTest {
     public void shouldUpdateUserByUsername() {
         // given
         User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "emailTest@test.com");
+                "lastNameTest", "emailTest@test.com", null);
         User updatedUser = new User("usernameTest", "updatedFirstNameTest",
-                "lastNameTest", "emailTest@test.com");
+                "lastNameTest", "emailTest@test.com", null);
 
         // when
         sut.saveUser(user);
