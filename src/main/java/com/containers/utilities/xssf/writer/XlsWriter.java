@@ -1,7 +1,8 @@
 package com.containers.utilities.xssf.writer;
 
 import com.containers.model.Container;
-import com.containers.utilities.xssf.XlsxFacade;
+import com.containers.model.DTO.WorkEstimateExcelDTO;
+import com.containers.utilities.xssf.XlsxHelper;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.*;
@@ -13,13 +14,13 @@ import java.io.*;
 @Service
 public class XlsWriter {
 
-    private XlsxFacade xlsxFacade;
+    private XlsxHelper xlsxHelper;
 
-    public XlsWriter(XlsxFacade xlsxFacade) {
-        this.xlsxFacade = xlsxFacade;
+    public XlsWriter(XlsxHelper xlsxHelper) {
+        this.xlsxHelper = xlsxHelper;
     }
 
-    public void writeContainerToSheet() throws IOException, InvalidFormatException {
+    public void writeContainerToSheet(WorkEstimateExcelDTO excelDTO) throws IOException, InvalidFormatException {
         OPCPackage pkg;
         String fileInputPath = "src/main/resources/xls/Work-Estimate.xlsx";
         try (FileInputStream in = new FileInputStream(new File(fileInputPath))) {
@@ -28,9 +29,9 @@ public class XlsWriter {
         try (XSSFWorkbook wb = new XSSFWorkbook(pkg)) {
 
 
-            setLogo(wb, xlsxFacade.getLogo("loconi"));
-            setSerialNo(wb, xlsxFacade.getContainerSerialNo("123456789"));
-            setPrefix(wb, xlsxFacade.getShipownerPrefix(1L));
+            setLogo(wb, xlsxHelper.getLogo("loconi"));
+            setSerialNo(wb, excelDTO.getContainerSerialNo());
+            setPrefix(wb, excelDTO.getPrefix());
 
             String fileOutputPath = "src/main/resources/xls/Work-Estimate-test.xlsx";
             try (OutputStream fileOut = new FileOutputStream(fileOutputPath)) {
