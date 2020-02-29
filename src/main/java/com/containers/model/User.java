@@ -1,11 +1,11 @@
 package com.containers.model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -14,7 +14,18 @@ public class User {
     private String lastName;
     private String email;
 
+    @ManyToOne(targetEntity = Role.class)
+    private Role role;
+
     public User() {
+    }
+
+    public User(String username, String firstName, String lastName, String email, Role role) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
     }
 
     public User(String username, String firstName, String lastName, String email) {

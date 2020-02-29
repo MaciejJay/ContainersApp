@@ -2,7 +2,9 @@ package com.containers.model;
 
 public enum DamageTypeEnum {
 
-    BENT("BT"), BROKEN("BR"), CRACKED("CR"), HOLE("H"), MISSING("M"), BRUISE("B"), CUT("C"), DENT("D"), LOOSE("L"), RUSTY("R");
+    BENT("BT"), BROKEN("BR"), CRACKED("CR"),
+    HOLE("H"), MISSING("M"), BRUISE("B"),
+    CUT("C"), DENT("D"), LOOSE("L"), RUSTY("R");
 
     private String damageSymbol;
 

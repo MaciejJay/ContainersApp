@@ -1,6 +1,6 @@
 package com.containers.service;
 
-import com.containers.model.ContainerDamage;
+import com.containers.model.Damage;
 import com.containers.repository.ContainerDamageRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,15 @@ public class ContainerDamageService {
         this.containerDamageRepository = containerDamageRepository;
     }
 
-    public Set<ContainerDamage> findAllDamage() {
+    public Set<Damage> findAllDamage() {
         return new HashSet<>(containerDamageRepository.findAll());
     }
 
-    public ContainerDamage addNewContainerDamage(ContainerDamage damage) {
+    public Damage addNewContainerDamage(Damage damage) {
         return containerDamageRepository.save(damage);
     }
 
-    public ContainerDamage updateContainerDamage(ContainerDamage damage) {
+    public Damage updateContainerDamage(Damage damage) {
         containerDamageRepository.delete(damage);
        return containerDamageRepository.save(damage);
     }
