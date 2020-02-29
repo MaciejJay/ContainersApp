@@ -16,19 +16,19 @@ public class Damage {
     private DamageTypeEnum damageTypeEnum;
     private Side side;
 
-    @ManyToOne(targetEntity = ContainerReport.class)
-    private ContainerReport containerReport;
+    @ManyToOne(targetEntity = ContainerForm.class)
+    private ContainerForm containerForm;
 
     public Damage() {
     }
 
-    public Damage(Long id, String description, String image, DamageTypeEnum damageTypeEnum, Side side, ContainerReport containerReport) {
+    public Damage(Long id, String description, String image, DamageTypeEnum damageTypeEnum, Side side, ContainerForm containerForm) {
         this.id = id;
         this.description = description;
         this.image = image;
         this.damageTypeEnum = damageTypeEnum;
         this.side = side;
-        this.containerReport = containerReport;
+        this.containerForm = containerForm;
     }
 
     public Long getId() {
@@ -71,12 +71,12 @@ public class Damage {
         this.side = side;
     }
 
-    public ContainerReport getContainerReport() {
-        return containerReport;
+    public ContainerForm getContainerForm() {
+        return containerForm;
     }
 
-    public void setContainerReport(ContainerReport containerReport) {
-        this.containerReport = containerReport;
+    public void setContainerForm(ContainerForm containerForm) {
+        this.containerForm = containerForm;
     }
 
     @Override
@@ -89,12 +89,12 @@ public class Damage {
                 Objects.equals(image, damage.image) &&
                 damageTypeEnum == damage.damageTypeEnum &&
                 side == damage.side &&
-                Objects.equals(containerReport, damage.containerReport);
+                Objects.equals(containerForm, damage.containerForm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, image, damageTypeEnum, side, containerReport);
+        return Objects.hash(id, description, image, damageTypeEnum, side, containerForm);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Damage {
                 ", image='" + image + '\'' +
                 ", damageTypeEnum=" + damageTypeEnum +
                 ", side=" + side +
-                ", containerReport=" + containerReport +
+                ", containerReport=" + containerForm +
                 '}';
     }
 }
