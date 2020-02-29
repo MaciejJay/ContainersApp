@@ -6,6 +6,7 @@ import java.util.Objects;
 @Entity
 public class Damage {
 
+
     @Id
     @GeneratedValue(generator = "damageSeq")
     @SequenceGenerator(name = "damageSeq",

@@ -27,6 +27,7 @@ VALUES (nextval('damage_seq'), 'podloga w znacznym stopniu zniszczona', null, 3,
      (nextval('damage_seq'), 'dziura na prawym boku', null, 4, 2, 5),
      (nextval('damage_seq'), 'uszkodzony rygiel na prawych drzwiach', null, 8, 1, 6);
 
+
 INSERT INTO DAMAGE_TYPE(id, type_enums)
 VALUES (1, 'BENT'),
          (2, 'BROKEN'),
