@@ -1,4 +1,12 @@
+
 SET session_replication_role = replica;
+
+INSERT INTO ROLE (id, authority)
+VAlUES (nextval('role_seq'), 'ADMIN');
+
+INSERT INTO `USER` (username, first_name, last_name, email, role_id)
+VALUES ('username', 'firstName', 'lastName', 'userMail', 1);
+
 
 insert into USERS (username, first_name, last_name, email, role_id)
 values ('wichni', 'Jakub', 'Wichniarek', 'jakubwichniarek@yahoo.pl', 1),
@@ -11,6 +19,7 @@ VALUES (nextval('role_seq'), 'ADMIN'),
         (nextval('role_seq'), 'USER');
 
 INSERT INTO CONTAINER_REPORT(id, container_no, container_type)
+
 
 -- INSERT INTO CONTAINER_SHIPOWNER (id, short_name, full_name)
 -- VALUES (nextval('Container_shipowner_seq'), 'Maersk', 'Maersk Line'),
