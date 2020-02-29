@@ -76,7 +76,7 @@ public class AppPdfWriter {
 
 
             damage = new ContainerDamage(LocalDate.now(), StatusEnum.CONTAINER_UNUSABLE, "Description","234", container, null, containerDamage, user);
-            user = new User("Admin", "Adam", "Adminowy", "a@a.pl");
+            user = new User("Admin", "Adam", "Adminowy", "a@a.pl", null);
             containerDamageSet.add(damage);
             container = new Container("CNUM123", "PIN123", "40", containerDamageSet);
             details = new OrderDetails(true, "ONum123", "Pz123", "Pz321", "Wag123", damage);

@@ -1,6 +1,5 @@
 package com.containers.model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,15 +12,18 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY)
+    private Role role;
 
     public User() {
     }
 
-    public User(String username, String firstName, String lastName, String email) {
+    public User(String username, String firstName, String lastName, String email, Role role) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -56,6 +58,14 @@ public class User {
         this.email = email;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,12 +74,13 @@ public class User {
         return Objects.equals(username, user.username) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(email, user.email);
+                Objects.equals(email, user.email) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, firstName, lastName, email);
+        return Objects.hash(username, firstName, lastName, email, role);
     }
 
     @Override
@@ -79,6 +90,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
