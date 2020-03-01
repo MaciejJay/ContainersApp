@@ -2,34 +2,36 @@
 
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
-          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <title>Menu</title>
-    <style>
-        .custom-restricted-width {
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body>
-<div class="pure-menu custom-restricted-width">
-    <div class="menu-background">
-
-    </div>
-    <span class="pure-menu-heading">Menu</span>
-    <ul>
-        <li class="pure-menu-item"><a href="/container/add" class="pure-menu-link">Add damage</a></li>
-        <li class="pure-menu-item"><a href="/damages/history" class="pure-menu-link">History of damage</a></li>
-        <li class="pure-menu-item"><a href="/container/status" class="pure-menu-link">Container status</a></li>
-        <li class="pure-menu-item"><a href="/email/send" class="pure-menu-link">Send email</a></li>
-    </ul>
-
-    <span class="pure-menu-heading">Menu for admins</span>
-    <ul>
-        <li class="pure-menu-item"><a href="/users/search" class="pure-menu-link">Search user</a></li>
-        <li class="pure-menu-item"><a href="/user/edit" class="pure-menu-link">Edit user</a></li>
-    </ul>
+<div class="images">
+    <a href="/container/add">
+        <img border="0" alt="add" src="/images/plus.png" width="300" height="300" style="left: 20%;
+        position: absolute;
+        top: 1%">
+    </a>
+    <a href="/container/find">
+        <img border="0" alt="add" src="/images/history.png" width="300" height="300" style="left: 60%;
+        position: absolute;
+        top: 1%">
+    </a>
+    <a href="/container/status">
+        <img border="0" alt="add" src="/images/status.png" width="300" height="300" style="left: 20%;
+        position: absolute;
+        top: 40%">
+    </a>
+    <a href="/email/send">
+        <img border="0" alt="add" src="/images/mail.png" width="300" height="300" style="left: 60%;
+        position: absolute;
+        top: 40%">
+    </a>
+    <a href="/login">
+        <img border="0" alt="add" src="/images/logout.png" width="300" height="300" style="left: 40%;
+        position: absolute;
+        top: 60%">
+    </a>
 </div>
 
 </body>
