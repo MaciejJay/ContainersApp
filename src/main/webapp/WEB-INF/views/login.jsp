@@ -1,11 +1,11 @@
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Login</title>
 
     <style>
         * {
             box-sizing: border-box;
-        }
+        }   
 
         body, html {
             margin: 0;
@@ -41,17 +41,18 @@
 
     <div class="inside"
          style="position: absolute;
-         top: 35%;
+         top: 30%;
          background-size: cover;
          -webkit-background-clip: text;
          padding-right: 20%;"
     >
+
         <div class="background" style="position: relative;
         background-color: azure;
         left: 50%;
         border-radius: 5px;
         width: 250px;
-        height: 250px">
+        height: 250px;">
 
             <div class="form" style="position: absolute;
             top: 20%;
@@ -60,12 +61,11 @@
                 <table>
                     <form action="/menu" style="" class="pure-form">
                         <input type="text" placeholder="Username" name="login" required>
-                        <p style="color: red;">
-                        </p>
+                        <p></p>
                         <input type="password" placeholder="Password" name="psw" required>
-                        <p style="color: red;">
-                        </p>
-                        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+                        <p></p>
+                        <button type="submit" class="pure-button pure-button-primary">Sign in
+                        </button>
                     </form>
                 </table>
                 <br/>
