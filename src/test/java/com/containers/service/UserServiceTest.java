@@ -1,3 +1,4 @@
+
 package com.containers.service;
 
 import com.containers.exceptions.UserNotFoundException;
@@ -40,17 +41,17 @@ public class UserServiceTest {
     @Test
     public void shouldFindUserByUsername() {
         // when
-        User user = sut.getUserByUsername("username");
+        User user = sut.findUserByUsername("przydan");
 
         // then
-        assertThat(user.getUsername().equals("username")).isNotNull();
+        assertThat(user.getUsername().equals("przydan")).isNotNull();
     }
 
     @Test
     public void shouldThrowUserNotFoundException() {
         // then
         assertThatThrownBy(
-                () -> sut.getUserByUsername("thisUsernameDoesNotExist"))
+                () -> sut.findUserByUsername("thisUsernameDoesNotExist"))
                 .isInstanceOf(UserNotFoundException.class);
     }
 
@@ -65,10 +66,10 @@ public class UserServiceTest {
         sut.saveUser(user);
 
         // then
-        assertThat(sut.getUserByUsername("usernameTest")).isNotNull();
+        assertThat(sut.findUserByUsername("usernameTest")).isNotNull();
         sut.deleteUser("usernameTest");
         assertThatThrownBy(
-                () -> sut.getUserByUsername("usernameTest"))
+                () -> sut.findUserByUsername("usernameTest"))
                 .isInstanceOf(UserNotFoundException.class);
     }
 
@@ -86,7 +87,7 @@ public class UserServiceTest {
         sut.updateUser(updatedUser);
 
         // then
-        assertThat(sut.getUserByUsername(user.getUsername())).isNotNull();
-        assertThat(sut.getUserByUsername(user.getUsername())).isEqualTo(updatedUser);
+        assertThat(sut.findUserByUsername(user.getUsername())).isNotNull();
+        assertThat(sut.findUserByUsername(user.getUsername())).isEqualTo(updatedUser);
     }
 }

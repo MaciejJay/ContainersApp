@@ -4,6 +4,8 @@
 <head>
     <title>Login</title>
 
+
+
     <style>
         * {
             box-sizing: border-box;
@@ -49,13 +51,13 @@
          padding-right: 20%;"
     >
 
+
         <div class="background" style="position: relative;
         background-color: azure;
         left: 50%;
         border-radius: 5px;
         width: 250px;
         height: 250px;">
-
             <div class="form" style="position: absolute;
             top: 20%;
             left: 20%;
@@ -68,6 +70,7 @@
                         <p></p>
                         <button type="submit" class="pure-button pure-button-primary">Sign in
                         </button>
+
                     </form>
                 </table>
                 <br/>
