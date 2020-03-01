@@ -28,10 +28,7 @@
 
         .inside {
             position: absolute;
-            bottom: 0;
-            color: #f1f1f1;
             width: 100%;
-            padding: 20px;
         }
     </style>
 </head>
@@ -41,14 +38,11 @@
 
     <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
         height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        z-index: auto;">
+        width: 100%;">
 
     <div class="inside"
          style="position: absolute;
-         top: 280px;
+         top: 40%;
          background-size: cover;
          -webkit-background-clip: text;
          padding-left: 20%;
@@ -57,13 +51,13 @@
 
         <div>
             <a href="/login">
-            <img border="0" alt="Login" src="/images/loginButton.png" width="250" height="130" style="float: left;">
+            <img border="0" alt="Login" src="/images/loginButton.png" width="25%" height="width*0.6" style="float: left;">
             </a>
         </div>
 
         <div>
             <a href="/guest">
-                <img border="0" alt="Login" src="/images/guestButton.png" width="250" height="130" style="float: right;">
+                <img border="0" alt="Login" src="/images/guestButton.png" width="25%" height="width*0.6" style="float: right;">
             </a>
         </div>
     </div>
