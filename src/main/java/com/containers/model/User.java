@@ -5,6 +5,7 @@ import java.util.Objects;
 
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -19,6 +20,7 @@ public class User {
     }
 
     public User(String username, String firstName, String lastName, String email, Role role) {
+
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -90,7 +92,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

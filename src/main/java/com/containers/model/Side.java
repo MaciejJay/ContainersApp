@@ -1,5 +1,6 @@
 package com.containers.model;
 
-public enum  Side {
-    RIGHT, LEFT, DOWN, UP, CENTER, FRONT, BACK, DOOR
+public enum Side {
+    RIGHT, LEFT, DOOR, UP, DOWN, FRONT, BACK, CENTER
+
 }

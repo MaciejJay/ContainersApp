@@ -19,9 +19,9 @@ public class UserRepositoryTest {
     private UserRepository sut;
 
     @Test
-    public void shouldReturnOptionalOfUsersByUserNames() {
+    public void shouldReturnUserWithUsernameWichni() {
         // when
-        Optional<User> actual = sut.findByUsername("userName");
+        Optional<User> actual = sut.findById("wichni");
 
         // then
         assertThat(actual).isPresent();
