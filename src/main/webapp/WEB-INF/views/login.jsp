@@ -1,3 +1,5 @@
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <title>Login</title>
@@ -5,7 +7,7 @@
     <style>
         * {
             box-sizing: border-box;
-        }   
+        }
 
         body, html {
             margin: 0;
