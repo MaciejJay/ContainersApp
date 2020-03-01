@@ -47,7 +47,7 @@
          padding-right: 20%;"
     >
         <div class="background" style="position: relative;
-        background-color: white;
+        background-color: azure;
         left: 50%;
         border-radius: 5px;
         width: 250px;
