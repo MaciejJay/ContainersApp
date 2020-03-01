@@ -10,32 +10,32 @@ import java.util.Set;
 @Controller
 public class DamageController {
 
-    private DamageService damageService;
+    private final DamageService damageService;
 
     public DamageController(DamageService damageService) {
         this.damageService = damageService;
     }
 
-    @PostMapping("/damage/add")
+    @PostMapping("/damages/add")
     public String addNewDamageToContainer(@ModelAttribute Damage damage) {
         damageService.addNewContainerDamage(damage);
-        return "redirect:/damage";
+        return "redirect:/damages";
     }
 
-    @GetMapping("/damage")
+    @GetMapping("/damages")
     public Set<Damage> findAllDamage() {
         return damageService.findAllDamage();
     }
 
-    @PostMapping("/damage/update")
+    @PostMapping("/damages/update")
     public String updateContainerDamage(@ModelAttribute Damage damage) {
         damageService.updateContainerDamage(damage);
-        return "redirect:/damage";
+        return "redirect:/damages";
     }
 
-    @GetMapping("/damage/delete/{id}")
+    @GetMapping("/damages/delete/{id}")
     public String deleteContainerDamage(@PathVariable Long id) {
         damageService.deleteContainerDamage(id);
-        return "redirect:/damage";
+        return "redirect:/damages";
     }
 }

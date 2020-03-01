@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        Optional<User> byUsername = userRepository.findByUsername(username);
+        Optional<User> byUsername = userRepository.findById(username);
 
         if (byUsername.isPresent()) {
             return byUsername.get();
@@ -34,11 +34,11 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        userRepository.deleteByUsername(user.getUsername());
+        userRepository.deleteById(user.getUsername());
         return userRepository.save(user);
     }
 
     public void deleteUser(String username) {
-        userRepository.deleteByUsername(username);
+        userRepository.deleteById(username);
     }
 }
