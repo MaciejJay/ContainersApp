@@ -48,7 +48,7 @@
     >
 
         <div class="background" style="position: relative;
-        background-color: azure;
+        background-size: cover;
         left: 50%;
         border-radius: 5px;
         width: 250px;
@@ -58,11 +58,8 @@
             top: 20%;
             left: 20%;">
                 <table>
-                    <form action="/container/find">
+                    <form action="/container/find" method="get">
                         <input type="text" placeholder="Container Number" name="containerNo" required>
-                        <p style="color: red;">
-                        </p>
-                        <input type="password" placeholder="PIN Number" name="NoPin" required>
                         <p style="color: red;">
                         </p>
                         <button type="submit">Find Container</button>

@@ -3,6 +3,9 @@ package com.containers.controller;
 import com.containers.service.ContainerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,7 +32,7 @@ public class ContainerController {
         return new ModelAndView("guest");
     }
 
-    @GetMapping("/menu")
+    @PostMapping("/menu")
     public ModelAndView getMenuPage() {
         return new ModelAndView("menu");
     }
@@ -70,7 +73,9 @@ public class ContainerController {
     }
 
     @GetMapping("/container/find")
-    public ModelAndView findContainer() {
-        return new ModelAndView("findContainer");
+    public ModelAndView findContainer(@RequestParam String containerNo) {
+        ModelAndView modelAndView = new ModelAndView("findContainer");
+        modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
+        return modelAndView;
     }
 }
