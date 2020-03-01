@@ -2,25 +2,34 @@
 
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <title>Menu</title>
+    <style>
+        .custom-restricted-width {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
-<h1>Menu</h1>
+<div class="pure-menu custom-restricted-width">
+    <div class="menu-background">
 
-<ol>
-    <li><a href="/container/add">Add damage</a></li>
-    <li><a href="/damages/history">History of damage</a></li>
-    <li><a href="/container/status">Container status</a></li>
-    <li><a href="/email/send">Send email</a></li>
-</ol>
+    </div>
+    <span class="pure-menu-heading">Menu</span>
+    <ul>
+        <li class="pure-menu-item"><a href="/container/add" class="pure-menu-link">Add damage</a></li>
+        <li class="pure-menu-item"><a href="/damages/history" class="pure-menu-link">History of damage</a></li>
+        <li class="pure-menu-item"><a href="/container/status" class="pure-menu-link">Container status</a></li>
+        <li class="pure-menu-item"><a href="/email/send" class="pure-menu-link">Send email</a></li>
+    </ul>
 
-<h3>Menu for admins</h3>
-<h4>This will not be visible for users. I'll implement it later</h4>
-<ol>
-    <li><a href="/users/search">Search user</a></li>
-    <li><a href="/user/edit">Edit user</a></li>
-</ol>
-
+    <span class="pure-menu-heading">Menu for admins</span>
+    <ul>
+        <li class="pure-menu-item"><a href="/users/search" class="pure-menu-link">Search user</a></li>
+        <li class="pure-menu-item"><a href="/user/edit" class="pure-menu-link">Edit user</a></li>
+    </ul>
+</div>
 
 </body>

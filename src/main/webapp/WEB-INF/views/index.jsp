@@ -33,8 +33,7 @@
     </style>
 </head>
 <body>
-<div class="outside" style="
-        position: relative;">
+<div class="outside">
 
     <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
         height: 100%;
@@ -51,13 +50,15 @@
 
         <div>
             <a href="/login">
-            <img border="0" alt="Login" src="/images/loginButton.png" width="25%" height="width*0.6" style="float: left;">
+                <img border="0" alt="Login" src="/images/loginButton.png" width="25%" height="width*0.6"
+                     style="float: left;">
             </a>
         </div>
 
         <div>
             <a href="/guest">
-                <img border="0" alt="Login" src="/images/guestButton.png" width="25%" height="width*0.6" style="float: right;">
+                <img border="0" alt="Login" src="/images/guestButton.png" width="25%" height="width*0.6"
+                     style="float: right;">
             </a>
         </div>
     </div>
