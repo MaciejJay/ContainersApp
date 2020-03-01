@@ -8,27 +8,28 @@ public class Damage {
 
     @Id
     @GeneratedValue(generator = "damageSeq")
-    @SequenceGenerator(name = "damageSeq",
-            sequenceName = "damage_seq", allocationSize = 1)
+    @SequenceGenerator(name = "damageSeq", sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private String description;
     private String image;
-    private DamageTypeEnum damageTypeEnum;
+    @OneToOne(targetEntity = DamageType.class)
+    private DamageType damageType;
+    @OneToOne(targetEntity = Side.class)
     private Side side;
 
-    @ManyToOne(targetEntity = ContainerReport.class)
-    private ContainerReport containerReport;
+    @ManyToOne(targetEntity = ContainerForm.class)
+    private ContainerForm containerForm;
 
     public Damage() {
     }
 
-    public Damage(Long id, String description, String image, DamageTypeEnum damageTypeEnum, Side side, ContainerReport containerReport) {
+    public Damage(Long id, String description, String image, DamageType damageType, Side side, ContainerForm containerForm) {
         this.id = id;
         this.description = description;
         this.image = image;
-        this.damageTypeEnum = damageTypeEnum;
+        this.damageType = damageType;
         this.side = side;
-        this.containerReport = containerReport;
+        this.containerForm = containerForm;
     }
 
     public Long getId() {
@@ -55,12 +56,12 @@ public class Damage {
         this.image = image;
     }
 
-    public DamageTypeEnum getDamageTypeEnum() {
-        return damageTypeEnum;
+    public DamageType getDamageType() {
+        return damageType;
     }
 
-    public void setDamageTypeEnum(DamageTypeEnum damageTypeEnum) {
-        this.damageTypeEnum = damageTypeEnum;
+    public void setDamageType(DamageType damageType) {
+        this.damageType = damageType;
     }
 
     public Side getSide() {
@@ -71,12 +72,12 @@ public class Damage {
         this.side = side;
     }
 
-    public ContainerReport getContainerReport() {
-        return containerReport;
+    public ContainerForm getContainerForm() {
+        return containerForm;
     }
 
-    public void setContainerReport(ContainerReport containerReport) {
-        this.containerReport = containerReport;
+    public void setContainerForm(ContainerForm containerForm) {
+        this.containerForm = containerForm;
     }
 
     @Override
@@ -87,14 +88,14 @@ public class Damage {
         return Objects.equals(id, damage.id) &&
                 Objects.equals(description, damage.description) &&
                 Objects.equals(image, damage.image) &&
-                damageTypeEnum == damage.damageTypeEnum &&
+                damageType == damage.damageType &&
                 side == damage.side &&
-                Objects.equals(containerReport, damage.containerReport);
+                Objects.equals(containerForm, damage.containerForm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, image, damageTypeEnum, side, containerReport);
+        return Objects.hash(id, description, image, damageType, side, containerForm);
     }
 
     @Override
@@ -103,9 +104,9 @@ public class Damage {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", damageTypeEnum=" + damageTypeEnum +
+                ", damageType=" + damageType +
                 ", side=" + side +
-                ", containerReport=" + containerReport +
+                ", containerReport=" + containerForm +
                 '}';
     }
 }
