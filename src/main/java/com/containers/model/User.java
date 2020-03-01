@@ -19,8 +19,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String firstName, String lastName, String email, Role role) {
+    public User(String username) {
+        this.username = username;
+    }
 
+    public User(String username, String firstName, String lastName, String email, Role role) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,13 +79,12 @@ public class User {
         return Objects.equals(username, user.username) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(role, user.role);
+                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, firstName, lastName, email, role);
+        return Objects.hash(username, firstName, lastName, email);
     }
 
     @Override
@@ -91,8 +93,7 @@ public class User {
                 "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", role=" + role +
+                ", email='" + email +
                 '}';
     }
 }

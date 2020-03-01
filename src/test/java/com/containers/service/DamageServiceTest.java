@@ -30,7 +30,7 @@ public class DamageServiceTest {
         //when
         Set<Damage> actual = sut.findAllDamage();
         //then
-        assertThat(actual.size()).isEqualTo(1);
+        assertThat(actual.size()).isEqualTo(6);
     }
 
     @Test
