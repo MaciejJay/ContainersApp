@@ -5,6 +5,7 @@ import com.containers.model.User;
 import com.containers.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,11 +17,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public List<User> findAllUser() {
+        return userRepository.findAll();
+    }
+
     public User saveUser (User user){
         return userRepository.save(user);
     }
 
-    public User getUserByUsername (String username) {
+    public User findUserByUsername (String username) {
         Optional<User> byUsername = userRepository.findByUsername(username);
 
         if (byUsername.isPresent()) {

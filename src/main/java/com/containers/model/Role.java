@@ -11,8 +11,6 @@ import java.util.Objects;
 public class Role {
 
     @Id
-    @GeneratedValue(generator = "roleSeq")
-    @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
     private Long id;
     private String authority;
 

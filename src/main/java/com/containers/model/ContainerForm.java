@@ -7,10 +7,9 @@ import java.util.Objects;
 @Entity
 public class ContainerForm {
 
-
     @Id
-    @GeneratedValue(generator = "containerReportSeq")
-    @SequenceGenerator(name = "containerReportSeq", sequenceName = "container_report_seq", allocationSize = 1)
+    @GeneratedValue(generator = "containerFormSeq")
+    @SequenceGenerator(name = "containerFormSeq", sequenceName = "container_form_seq", allocationSize = 1)
     private Long id;
     private String containerNo;
     private String containerType;
