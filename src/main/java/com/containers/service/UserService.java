@@ -21,24 +21,24 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User saveUser (User user){
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public User findUserByUsername (String username) {
-        Optional<User> byUsername = userRepository.findByUsername(username);
+    public User findUserByUsername(String username) {
+        Optional<User> byUsername = userRepository.findById(username);
 
         if (byUsername.isPresent()) {
             return byUsername.get();
         } else throw new UserNotFoundException("User " + username + " not found");
     }
 
-    public User updateUser (User user) {
-        userRepository.deleteByUsername(user.getUsername());
+    public User updateUser(User user) {
+        userRepository.deleteById(user.getUsername());
         return userRepository.save(user);
     }
 
-    public void deleteUser (String username) {
-        userRepository.deleteByUsername(username);
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -28,20 +28,20 @@ public class UserController {
         return userService.findAllUser();
     }
 
-    @PutMapping("/users/update")
+    @PostMapping("/users/update")
     public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/users" + user.getUsername();
     }
 
-    @DeleteMapping("/users/delete/{username}")
+    @GetMapping("/users/delete/{username}")
     public String deleteUser(@PathVariable String username) {
         userService.deleteUser(username);
         return "redirect:/users";
     }
 
     @GetMapping("/users/{username}")
-    public ModelAndView userDetailsView(@PathVariable String username) {
+    public ModelAndView findUserByUsername(@PathVariable String username) {
         ModelAndView modelAndView = new ModelAndView("userDetails");
         modelAndView.addObject("user", userService.findUserByUsername(username));
         return modelAndView;
