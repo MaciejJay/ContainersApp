@@ -8,6 +8,4 @@ import java.util.Set;
 
 public interface ContainerRepository extends JpaRepository<Container, String> {
 
-    Optional<Container> findByNoContainer(String noContainer);
-
 }

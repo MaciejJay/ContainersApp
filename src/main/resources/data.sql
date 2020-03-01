@@ -10,13 +10,21 @@ INSERT INTO ROLE(id, authority)
 VALUES (nextval('role_seq'), 'ADMIN'),
         (nextval('role_seq'), 'USER');
 
-INSERT INTO CONTAINER_FORM(id, container_no, container_type, user_username, add_date, auto_generated_pin)
-VALUES (nextval('container_form_seq'), 'MRKU 1234567', '40DV', 'wichni', '2020-01-14', '123'),
-         (nextval('container_form_seq'), 'MSCU 0987654', '20DV', 'maciej', '2020-01-11', '234'),
-         (nextval('container_form_seq'), 'APLU 2340987', '40HC', 'wichni', '2020-01-14', '345'),
-         (nextval('container_form_seq'), 'MRKU 9875432', '40HC', 'przydan', '2020-01-14', '456'),
-         (nextval('container_form_seq'), 'AZLU 1356789', '40DV', 'piotrek', '2020-01-04', '678'),
-         (nextval('container_form_seq'), 'MSCU 0864213', '40DV', 'piotrek', '2020-01-04', '567');
+INSERT INTO CONTAINER(container_id_number, container_type, container_ship_owner, container_no_pin)
+VALUES ('MRKU 1234567', '40DV', 'Maersk', '123'),
+        ('MSCU 0987654', '20DV', 'MSC', '234'),
+        ('APLU 2340987', '40HC', 'APL', '345'),
+        ('MRKU 9875432', '40HC', 'Maersk', '456'),
+        ('AZLU 1356789', '40DV', 'Hapag', '678'),
+        ('MSCU 0864213', '40DV', 'MSC', '567');
+
+INSERT INTO CONTAINER_FORM(id, container_container_id_number, user_username, add_date)
+VALUES (nextval('container_form_seq'), 'MRKU 1234567', 'wichni', '2020-01-14'),
+         (nextval('container_form_seq'), 'MSCU 0987654', 'maciej', '2020-01-11'),
+         (nextval('container_form_seq'), 'APLU 2340987', 'wichni', '2020-01-14'),
+         (nextval('container_form_seq'), 'MRKU 9875432', 'przydan', '2020-01-14'),
+         (nextval('container_form_seq'), 'AZLU 1356789', 'piotrek', '2020-01-04'),
+         (nextval('container_form_seq'), 'MSCU 0864213', 'piotrek', '2020-01-04');
 
 
 INSERT INTO DAMAGE (id, description, image, damage_type, side, container_form_id)

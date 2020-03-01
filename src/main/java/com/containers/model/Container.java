@@ -1,5 +1,6 @@
 package com.containers.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,9 +14,11 @@ import static javax.persistence.FetchType.EAGER;
 public class Container {
 
     @Id
-    private String noContainer;
-    private String containerNoPin;
+    private String containerIdNumber;
     private String containerType;
+    private String containerShipOwner;
+    @Column(unique = true)
+    private String containerNoPin;
 
     @OneToMany(targetEntity = Damage.class,
             fetch = EAGER,
@@ -27,27 +30,20 @@ public class Container {
     public Container() {
     }
 
-    public Container(String noContainer, String containerNoPin, String containerType, Set<Damage> containerDamage) {
-        this.noContainer = noContainer;
-        this.containerNoPin = containerNoPin;
+    public Container(String containerIdNumber, String containerType, String containerShipOwner, String containerNoPin, Set<Damage> containerDamage) {
+        this.containerIdNumber = containerIdNumber;
         this.containerType = containerType;
+        this.containerShipOwner = containerShipOwner;
+        this.containerNoPin = containerNoPin;
         this.containerDamage = containerDamage;
     }
 
-    public String getNoContainer() {
-        return noContainer;
+    public String getContainerIdNumber() {
+        return containerIdNumber;
     }
 
-    public void setNoContainer(String noContainer) {
-        this.noContainer = noContainer;
-    }
-
-    public String getContainerNoPin() {
-        return containerNoPin;
-    }
-
-    public void setContainerNoPin(String containerNoPin) {
-        this.containerNoPin = containerNoPin;
+    public void setContainerIdNumber(String containerIdNumber) {
+        this.containerIdNumber = containerIdNumber;
     }
 
     public String getContainerType() {
@@ -58,37 +54,54 @@ public class Container {
         this.containerType = containerType;
     }
 
-    public Set<Damage> getDamage() {
+    public String getContainerShipOwner() {
+        return containerShipOwner;
+    }
+
+    public void setContainerShipOwner(String containerShipOwner) {
+        this.containerShipOwner = containerShipOwner;
+    }
+
+    public String getContainerNoPin() {
+        return containerNoPin;
+    }
+
+    public void setContainerNoPin(String containerNoPin) {
+        this.containerNoPin = containerNoPin;
+    }
+
+    public Set<Damage> getContainerDamage() {
         return containerDamage;
     }
 
-    public void setDamage(Set<Damage> containerDamage) {
+    public void setContainerDamage(Set<Damage> containerDamage) {
         this.containerDamage = containerDamage;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return Objects.equals(noContainer, container.noContainer) &&
-                Objects.equals(containerNoPin, container.containerNoPin) &&
+        return Objects.equals(containerIdNumber, container.containerIdNumber) &&
                 Objects.equals(containerType, container.containerType) &&
+                Objects.equals(containerShipOwner, container.containerShipOwner) &&
+                Objects.equals(containerNoPin, container.containerNoPin) &&
                 Objects.equals(containerDamage, container.containerDamage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(noContainer, containerNoPin, containerType, containerDamage);
+        return Objects.hash(containerIdNumber, containerType, containerShipOwner, containerNoPin, containerDamage);
     }
 
     @Override
     public String toString() {
         return "Container{" +
-                "noContainer='" + noContainer + '\'' +
-                ", containerNoPin='" + containerNoPin + '\'' +
+                "containerIdNumber='" + containerIdNumber + '\'' +
                 ", containerType='" + containerType + '\'' +
+                ", containerShipOwner='" + containerShipOwner + '\'' +
+                ", containerNoPin='" + containerNoPin + '\'' +
                 ", containerDamage=" + containerDamage +
                 '}';
     }

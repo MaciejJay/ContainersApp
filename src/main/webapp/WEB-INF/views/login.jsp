@@ -4,7 +4,10 @@
 <head>
     <title>Login</title>
 
-
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
 
     <style>
         * {
@@ -34,6 +37,7 @@
             position: absolute;
             width: 100%;
         }
+
     </style>
 </head>
 <body>
@@ -53,7 +57,7 @@
 
 
         <div class="background" style="position: relative;
-        background-color: azure;
+        background-size: cover;
         left: 50%;
         border-radius: 5px;
         width: 250px;
@@ -63,14 +67,13 @@
             left: 20%;
             ">
                 <table>
-                    <form action="/menu" style="" class="pure-form">
+                    <form action="/menu" style="" class="pure-form" method="post">
                         <input type="text" placeholder="Username" name="login" required>
                         <p></p>
-                        <input type="password" placeholder="Password" name="psw" required>
+                        <input type="password" id="password" name="password" class="form-control" data-toggle="password">
                         <p></p>
                         <button type="submit" class="pure-button pure-button-primary">Sign in
                         </button>
-
                     </form>
                 </table>
                 <br/>
@@ -81,5 +84,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $("#password").password('toggle');
+</script>
 </body>
 </html>

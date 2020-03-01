@@ -28,7 +28,7 @@ public class ContainerService {
     }
 
     public Container updateContainer(Container container) {
-        containerRepository.deleteById(container.getNoContainer());
+        containerRepository.deleteById(container.getContainerIdNumber());
         return containerRepository.save(container);
     }
 
@@ -37,7 +37,7 @@ public class ContainerService {
     }
 
     public Container findContainerById(String noContainer) {
-        Optional<Container> containerById = containerRepository.findByNoContainer(noContainer);
+        Optional<Container> containerById = containerRepository.findById(noContainer);
         if (containerById.isPresent()) {
             return containerById.get();
         } else throw new ContainerNotFoundException("Container not found");
