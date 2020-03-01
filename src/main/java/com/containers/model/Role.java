@@ -1,6 +1,8 @@
 package com.containers.model;
 
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +13,8 @@ import java.util.Objects;
 public class Role {
 
     @Id
+    @GeneratedValue(generator = "roleSeq")
+    @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
     private Long id;
     private String authority;
 

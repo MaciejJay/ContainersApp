@@ -8,12 +8,13 @@ public class Damage {
 
     @Id
     @GeneratedValue(generator = "damageSeq")
-    @SequenceGenerator(name = "damageSeq",
-            sequenceName = "damage_seq", allocationSize = 1)
+    @SequenceGenerator(name = "damageSeq", sequenceName = "damage_seq", allocationSize = 1)
     private Long id;
     private String description;
     private String image;
-    private DamageTypeEnum damageTypeEnum;
+    @Enumerated(EnumType.STRING)
+    private DamageType damageType;
+    @Enumerated(EnumType.STRING)
     private Side side;
 
     @ManyToOne(targetEntity = ContainerForm.class)
@@ -22,11 +23,11 @@ public class Damage {
     public Damage() {
     }
 
-    public Damage(Long id, String description, String image, DamageTypeEnum damageTypeEnum, Side side, ContainerForm containerForm) {
+    public Damage(Long id, String description, String image, DamageType damageType, Side side, ContainerForm containerForm) {
         this.id = id;
         this.description = description;
         this.image = image;
-        this.damageTypeEnum = damageTypeEnum;
+        this.damageType = damageType;
         this.side = side;
         this.containerForm = containerForm;
     }
@@ -55,12 +56,12 @@ public class Damage {
         this.image = image;
     }
 
-    public DamageTypeEnum getDamageTypeEnum() {
-        return damageTypeEnum;
+    public DamageType getDamageType() {
+        return damageType;
     }
 
-    public void setDamageTypeEnum(DamageTypeEnum damageTypeEnum) {
-        this.damageTypeEnum = damageTypeEnum;
+    public void setDamageType(DamageType damageType) {
+        this.damageType = damageType;
     }
 
     public Side getSide() {
@@ -87,14 +88,14 @@ public class Damage {
         return Objects.equals(id, damage.id) &&
                 Objects.equals(description, damage.description) &&
                 Objects.equals(image, damage.image) &&
-                damageTypeEnum == damage.damageTypeEnum &&
+                Objects.equals(damageType, damage.damageType) &&
                 side == damage.side &&
                 Objects.equals(containerForm, damage.containerForm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, image, damageTypeEnum, side, containerForm);
+        return Objects.hash(id, description, image, damageType, side, containerForm);
     }
 
     @Override
@@ -103,9 +104,9 @@ public class Damage {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", damageTypeEnum=" + damageTypeEnum +
+                ", damageType=" + damageType +
                 ", side=" + side +
-                ", containerReport=" + containerForm +
+                ", containerForm=" + containerForm +
                 '}';
     }
 }

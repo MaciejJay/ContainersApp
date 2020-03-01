@@ -16,9 +16,6 @@ public class User {
     @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY)
     private Role role;
 
-    @ManyToOne(targetEntity = Role.class)
-    private Role role;
-
     public User() {
     }
 
@@ -30,9 +27,6 @@ public class User {
         this.email = email;
         this.role = role;
     }
-
-    public User(String username, String firstName, String lastName, String email) {
-
 
     public String getUsername() {
         return username;
@@ -98,7 +92,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

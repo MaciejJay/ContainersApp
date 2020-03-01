@@ -18,7 +18,7 @@ public class DamageController {
 
     @PostMapping("/damages/add")
     public String addNewDamageToContainer(@ModelAttribute Damage damage) {
-        damageService.addNewContainerDamage(damage);
+        damageService.saveContainerDamage(damage);
         return "redirect:/damages";
     }
 
@@ -29,7 +29,7 @@ public class DamageController {
 
     @PostMapping("/damages/update")
     public String updateContainerDamage(@ModelAttribute Damage damage) {
-        damageService.updateContainerDamage(damage);
+        damageService.saveContainerDamage(damage);
         return "redirect:/damages";
     }
 

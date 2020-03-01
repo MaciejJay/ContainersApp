@@ -20,12 +20,7 @@ public class DamageService {
         return new HashSet<>(damageRepository.findAll());
     }
 
-    public Damage addNewContainerDamage(Damage damage) {
-        return damageRepository.save(damage);
-    }
-
-    public Damage updateContainerDamage(Damage damage) {
-        damageRepository.delete(damage);
+    public Damage saveContainerDamage(Damage damage) {
         return damageRepository.save(damage);
     }
 
