@@ -21,11 +21,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User saveUser (User user){
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public User findUserByUsername (String username) {
+    public User findUserByUsername(String username) {
         Optional<User> byUsername = userRepository.findByUsername(username);
 
         if (byUsername.isPresent()) {
@@ -33,12 +33,12 @@ public class UserService {
         } else throw new UserNotFoundException("User " + username + " not found");
     }
 
-    public User updateUser (User user) {
+    public User updateUser(User user) {
         userRepository.deleteByUsername(user.getUsername());
         return userRepository.save(user);
     }
 
-    public void deleteUser (String username) {
+    public void deleteUser(String username) {
         userRepository.deleteByUsername(username);
     }
 }

@@ -26,6 +26,10 @@ public class DamageService {
 
     public Damage updateContainerDamage(Damage damage) {
         damageRepository.delete(damage);
-       return damageRepository.save(damage);
+        return damageRepository.save(damage);
+    }
+
+    public void deleteContainerDamage(Long id) {
+        damageRepository.deleteById(id);
     }
 }
