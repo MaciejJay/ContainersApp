@@ -44,8 +44,7 @@
          top: 30%;
          background-size: cover;
          -webkit-background-clip: text;
-         padding-right: 20%;"
-    >
+         padding-right: 20%;">
 
         <div class="background" style="position: relative;
         background-size: cover;
@@ -58,7 +57,7 @@
             top: 20%;
             left: 20%;">
                 <table>
-                    <form action="/container/find" method="get">
+                    <form action="/containers/find" method="get">
                         <input type="text" placeholder="Container Number" name="containerNo" required>
                         <p style="color: red;">
                         </p>

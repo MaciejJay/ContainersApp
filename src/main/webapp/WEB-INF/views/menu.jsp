@@ -7,17 +7,17 @@
 
 <body>
 <div class="images">
-    <a href="/container/add">
+    <a href="/containers/add">
         <img border="0" alt="add" src="/images/plus.png" width="300" height="300" style="left: 20%;
         position: absolute;
         top: 1%">
     </a>
-    <a href="/container/find">
+    <a href="/containers/find">
         <img border="0" alt="add" src="/images/history.png" width="300" height="300" style="left: 60%;
         position: absolute;
         top: 1%">
     </a>
-    <a href="/container/status">
+    <a href="/containers/status">
         <img border="0" alt="add" src="/images/status.png" width="300" height="300" style="left: 20%;
         position: absolute;
         top: 40%">

@@ -45,8 +45,7 @@
          background-size: cover;
          -webkit-background-clip: text;
          padding-left: 20%;
-         padding-right: 20%;"
-    >
+         padding-right: 20%;">
 
         <div>
             <a href="/login">

@@ -23,25 +23,20 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users")
-    public List<User> findAllUser() {
-        return userService.findAllUser();
-    }
-
     @PostMapping("/users/update")
     public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/users" + user.getUsername();
     }
 
-    @GetMapping("/users/delete/{username}")
-    public String deleteUser(@PathVariable String username) {
+    @GetMapping("/users/delete/")
+    public String deleteUser(@RequestParam String username) {
         userService.deleteUser(username);
         return "redirect:/users";
     }
 
-    @GetMapping("/users/{username}")
-    public ModelAndView findUserByUsername(@PathVariable String username) {
+    @GetMapping("/users")
+    public ModelAndView usersFindByUsername(@RequestParam (required = false) String username) {
         ModelAndView modelAndView = new ModelAndView("userDetails");
         modelAndView.addObject("user", userService.findUserByUsername(username));
         return modelAndView;
