@@ -30,7 +30,7 @@ public class AppController {
 
     @GetMapping("/email/send")
     public ModelAndView sendEmail() {
-        return new ModelAndView("emailForm");
+        return new ModelAndView("sendEmail");
     }
 
 }
