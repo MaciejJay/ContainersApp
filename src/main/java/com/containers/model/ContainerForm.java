@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 public class ContainerForm {
 
@@ -11,9 +13,9 @@ public class ContainerForm {
     @GeneratedValue(generator = "containerFormSeq")
     @SequenceGenerator(name = "containerFormSeq", sequenceName = "container_form_seq", allocationSize = 1)
     private Long id;
-    @ManyToOne(targetEntity = Container.class)
+    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private Container container;
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private User user;
     private LocalDate addDate;
 

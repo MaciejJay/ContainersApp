@@ -1,8 +1,11 @@
 package com.containers.service;
 
+import com.containers.exceptions.ContainerNotFoundException;
 import com.containers.exceptions.UserNotFoundException;
+import com.containers.model.Container;
 import com.containers.model.User;
 import com.containers.repository.UserRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,11 +29,10 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        Optional<User> byUsername = userRepository.findById(username);
-
-        if (byUsername.isPresent()) {
-            return byUsername.get();
-        } else throw new UserNotFoundException("User " + username + " not found");
+        Optional<User> userById = userRepository.findById(username);
+        if (userById.isPresent()) {
+            return userById.get();
+        } else throw new UserNotFoundException("User not found");
     }
 
     public User updateUser(User user) {
@@ -38,7 +40,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public List<User> searchUsers(String keyword) {
+        return userRepository.search(keyword);
+    }
+
     public void deleteUser(String username) {
         userRepository.deleteById(username);
+    }
+
+    public User findById(String username) {
+        return userRepository.findById(username).get();
     }
 }
