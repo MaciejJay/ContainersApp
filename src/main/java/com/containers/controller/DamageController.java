@@ -4,6 +4,7 @@ import com.containers.model.Damage;
 import com.containers.service.DamageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Set;
 
@@ -37,5 +38,10 @@ public class DamageController {
     public String deleteContainerDamage(@PathVariable Long id) {
         damageService.deleteContainerDamage(id);
         return "redirect:/damages";
+    }
+
+    @GetMapping("/damages/history")
+    public ModelAndView getDamagesHistory() {
+        return new ModelAndView("damagesHistory");
     }
 }

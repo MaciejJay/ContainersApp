@@ -52,9 +52,7 @@
          top: 30%;
          background-size: cover;
          -webkit-background-clip: text;
-         padding-right: 20%;"
-    >
-
+         padding-right: 20%;">
 
         <div class="background" style="position: relative;
         background-size: cover;
@@ -64,8 +62,7 @@
         height: 250px;">
             <div class="form" style="position: absolute;
             top: 20%;
-            left: 20%;
-            ">
+            left: 20%;">
                 <table>
                     <form action="/menu" style="" class="pure-form" method="post">
                         <input type="text" placeholder="Username" name="login" required>

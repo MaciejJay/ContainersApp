@@ -9,7 +9,7 @@
 <table style="top: 20px;">
     <h1>Assessment of the technical condition of the container</h1>
 </table>
-<form action="/container/add/model">
+<form action="/containers/add/model">
 <table style="left: 20px;">
     <p>Gate: <label><input type="radio" name="Gate"> In</label>
              <label><input type="radio" name="Gate"> Out</label></p>
