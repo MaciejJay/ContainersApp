@@ -13,6 +13,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY)
     private Role role;
 
@@ -28,6 +29,15 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.role = role;
+    }
+
+    public User(String username, String firstName, String lastName, String email, String password, Role role) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
         this.role = role;
     }
 
@@ -71,6 +81,14 @@ public class User {
         this.role = role;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,12 +97,13 @@ public class User {
         return Objects.equals(username, user.username) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(email, user.email);
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, firstName, lastName, email);
+        return Objects.hash(username, firstName, lastName, email, password);
     }
 
     @Override
@@ -93,7 +112,8 @@ public class User {
                 "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

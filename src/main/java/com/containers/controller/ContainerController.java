@@ -4,11 +4,11 @@ import com.containers.model.Container;
 import com.containers.service.ContainerService;
 import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ContainerController {
@@ -21,19 +21,31 @@ public class ContainerController {
 
     @GetMapping("/containers/add")
     public ModelAndView containerAdd() {
-        return new ModelAndView("addNewContainer");
+        ModelAndView modelAndView = new ModelAndView("addNewContainer");
+        modelAndView.addObject("newContainer", new Container());
+        modelAndView.addObject("updateContainer", false);
+        return modelAndView;
+    }
+
+    @PostMapping("/containers")
+    public String createContainer(@ModelAttribute Container container) {
+        containerService.saveContainer(container);
+        return "redirect:/containers/";
     }
 
     @GetMapping("/containers/add/model")
     public ModelAndView containersAddModel() {
+        ModelAndView modelAndView = new ModelAndView("containerModel");
         return new ModelAndView("containerModel");
     }
 
-    @GetMapping("/containers/find")
+    @GetMapping(value = "/containers/find")
     public ModelAndView findContainer(@RequestParam String containerNo) {
         ModelAndView modelAndView = new ModelAndView("findContainer");
-        modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
-        return modelAndView;
+        if (containerNo == null) {
+            return modelAndView.addObject("findContainer", containerService.findAllContainers());
+        } else
+            return modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
     }
 
     @PostMapping("/containers/update")

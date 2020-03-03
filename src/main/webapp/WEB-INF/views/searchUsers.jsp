@@ -57,7 +57,7 @@
             top: 20%;
             left: 20%;">
                 <table>
-                    <form action="/users" method="get">
+                    <form action="/users/find" method="get">
                         <input type="text" placeholder="Username" name="username" required>
                         <p style="color: red;">
                         </p>

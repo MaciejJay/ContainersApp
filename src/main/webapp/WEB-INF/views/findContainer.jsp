@@ -60,10 +60,12 @@
             <div class="form" style="position: absolute;
             top: 20%;
             left: 20%;">
+                <c:forEach var="Container" items="${containerNo}">
                 <table>
                     <h3>Your container : </h3>
-
+                    <td>${Container.containerNo}
                 </table>
+                </c:forEach>
                 <br/>
                 <button onclick="window.location.href='/'" type="submit" class="pure-button pure-button-primary">
                     Back to main page
