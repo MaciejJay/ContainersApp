@@ -2,13 +2,10 @@ package com.containers.controller;
 
 import com.containers.model.Container;
 import com.containers.service.ContainerService;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class ContainerController {

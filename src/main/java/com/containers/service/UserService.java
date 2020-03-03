@@ -1,15 +1,13 @@
 package com.containers.service;
 
-import com.containers.exceptions.ContainerNotFoundException;
 import com.containers.exceptions.UserNotFoundException;
-import com.containers.model.Container;
 import com.containers.model.User;
 import com.containers.repository.UserRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -20,8 +18,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllUser() {
-        return userRepository.findAll();
+    public Set<User> findAllUser() {
+        return new HashSet<>(userRepository.findAll());
     }
 
     public User saveUser(User user) {
@@ -40,8 +38,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> searchUsers(String keyword) {
-        return userRepository.search(keyword);
+    public Set<User> searchUsers(String keyword) {
+        return new HashSet<>(userRepository.search(keyword));
     }
 
     public void deleteUser(String username) {

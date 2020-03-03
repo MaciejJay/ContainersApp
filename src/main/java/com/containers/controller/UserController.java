@@ -2,15 +2,11 @@ package com.containers.controller;
 
 import com.containers.model.User;
 import com.containers.service.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -56,7 +52,7 @@ public class UserController {
 
     @GetMapping("/users")
     public ModelAndView findAllUsers() {
-        List<User> usersList = userService.findAllUser();
+        Set<User> usersList = userService.findAllUser();
         ModelAndView modelAndView = new ModelAndView("usersList");
         modelAndView.addObject("listUsers", usersList);
         return modelAndView;
@@ -65,7 +61,7 @@ public class UserController {
     @GetMapping("/search")
     public ModelAndView userFindByUsername(@RequestParam String keyword) {
         ModelAndView modelAndView = new ModelAndView("searchUsers");
-        List<User> userSearch = userService.searchUsers(keyword);
+        Set<User> userSearch = userService.searchUsers(keyword);
         modelAndView.addObject("searchingUser", userSearch);
         return modelAndView;
     }

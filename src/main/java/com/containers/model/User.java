@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import static javax.persistence.CascadeType.*;
 
-
 @Entity
 @Table(name = "users")
 public class User {
