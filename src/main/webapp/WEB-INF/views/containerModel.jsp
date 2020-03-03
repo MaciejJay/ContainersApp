@@ -785,7 +785,7 @@
 </table>
 
 <form action="">
-    <button type="submit" class="submit">Save to db</button>
+    <button type="submit" class="submit" formmethod="get">Save to db</button>
     <button type="submit" class="submit">Save and print</button>
     <button type="submit" class="submit">Return to first page</button>
 </form>

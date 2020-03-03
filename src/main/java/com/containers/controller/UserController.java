@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -17,10 +18,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/users/add")
-    public String addNewUser(@ModelAttribute User user) {
+    @GetMapping("/users/add")
+    public String addNewUser(Map<String, Object> map) {
+            User newUser = new User();
+            map.put("employee", newUser);
+            return "addNewUser";
+    }
+
+    @PostMapping(value = "/users/add/save")
+    public String saveUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @PostMapping("/users/update")
@@ -36,9 +44,10 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ModelAndView usersFindByUsername(@RequestParam (required = false) String username) {
-        ModelAndView modelAndView = new ModelAndView("userDetails");
-        modelAndView.addObject("user", userService.findUserByUsername(username));
+    public ModelAndView usersFindByUsername() {
+        List<User> usersList = userService.findAllUser();
+        ModelAndView modelAndView = new ModelAndView("usersList");
+        modelAndView.addObject("listUsers", usersList);
         return modelAndView;
     }
 }

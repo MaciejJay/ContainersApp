@@ -1,5 +1,7 @@
 package com.containers.model;
 
+import org.springframework.data.util.Lazy;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 public class Container {
@@ -21,7 +23,7 @@ public class Container {
     private String containerNoPin;
 
     @OneToMany(targetEntity = Damage.class,
-            fetch = EAGER,
+            fetch = LAZY,
             cascade = ALL)
 
     private Set<Damage> containerDamage;
