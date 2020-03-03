@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Send Email</title>
+    <title>Send email</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -14,6 +14,9 @@
         body {
             font-family: Arial, serif;
             font-size: 17px;
+            font-weight: bold;
+            color: white;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
 
         .outside {
@@ -38,6 +41,7 @@
     <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
         height: 100%;
         width: 100%;">
+
 
         <div class="inside"
              style="top: 20%;
