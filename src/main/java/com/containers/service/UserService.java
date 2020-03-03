@@ -5,8 +5,9 @@ import com.containers.model.User;
 import com.containers.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -17,8 +18,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllUser() {
-        return userRepository.findAll();
+    public Set<User> findAllUser() {
+        return new HashSet<>(userRepository.findAll());
     }
 
     public User saveUser(User user) {
@@ -26,11 +27,10 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        Optional<User> byUsername = userRepository.findById(username);
-
-        if (byUsername.isPresent()) {
-            return byUsername.get();
-        } else throw new UserNotFoundException("User " + username + " not found");
+        Optional<User> userById = userRepository.findById(username);
+        if (userById.isPresent()) {
+            return userById.get();
+        } else throw new UserNotFoundException("User not found");
     }
 
     public User updateUser(User user) {
@@ -38,7 +38,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Set<User> searchUsers(String keyword) {
+        return new HashSet<>(userRepository.search(keyword));
+    }
+
     public void deleteUser(String username) {
         userRepository.deleteById(username);
+    }
+
+    public User findById(String username) {
+        return userRepository.findById(username).get();
     }
 }

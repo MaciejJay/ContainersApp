@@ -3,6 +3,7 @@ package com.containers.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "users")
@@ -14,7 +15,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private Role role;
 
     public User() {

@@ -1,7 +1,5 @@
 package com.containers.model;
 
-import org.springframework.data.util.Lazy;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

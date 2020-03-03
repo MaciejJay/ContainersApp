@@ -6,8 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -18,36 +17,52 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/add")
-    public String addNewUser(Map<String, Object> map) {
-            User newUser = new User();
-            map.put("employee", newUser);
-            return "addNewUser";
+    @GetMapping("/new")
+    public ModelAndView addUser() {
+        ModelAndView modelAndView = new ModelAndView("addNewUser");
+        modelAndView.addObject("newUsers", new User());
+        return modelAndView;
     }
 
-    @PostMapping(value = "/users/add/save")
+    @PostMapping(value = "/save")
     public String saveUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:/";
+        return "redirect:/users";
     }
 
-    @PostMapping("/users/update")
-    public String updateUser(@ModelAttribute User user) {
+    @GetMapping("/update/{username}")
+    public ModelAndView updateUserView(@PathVariable String username) {
+        ModelAndView modelAndView = new ModelAndView("editUser");
+        modelAndView.addObject("user", userService.findUserByUsername(username));
+        modelAndView.addObject("newUpdate", true);
+        return modelAndView;
+    }
+
+    @PostMapping("/user/update")
+    public String usersUpdate(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/users" + user.getUsername();
     }
 
-    @GetMapping("/users/delete/")
-    public String deleteUser(@RequestParam String username) {
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable String username) {
         userService.deleteUser(username);
         return "redirect:/users";
     }
 
     @GetMapping("/users")
-    public ModelAndView usersFindByUsername() {
-        List<User> usersList = userService.findAllUser();
+    public ModelAndView findAllUsers() {
+        Set<User> usersList = userService.findAllUser();
         ModelAndView modelAndView = new ModelAndView("usersList");
         modelAndView.addObject("listUsers", usersList);
+        return modelAndView;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView userFindByUsername(@RequestParam String keyword) {
+        ModelAndView modelAndView = new ModelAndView("searchUsers");
+        Set<User> userSearch = userService.searchUsers(keyword);
+        modelAndView.addObject("searchingUser", userSearch);
         return modelAndView;
     }
 }

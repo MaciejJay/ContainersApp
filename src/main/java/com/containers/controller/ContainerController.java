@@ -2,13 +2,10 @@ package com.containers.controller;
 
 import com.containers.model.Container;
 import com.containers.service.ContainerService;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class ContainerController {
@@ -19,7 +16,7 @@ public class ContainerController {
         this.containerService = containerService;
     }
 
-    @GetMapping("/containers/add")
+    @GetMapping(value = "/containers/add")
     public ModelAndView containerAdd() {
         ModelAndView modelAndView = new ModelAndView("addNewContainer");
         modelAndView.addObject("newContainer", new Container());
@@ -30,7 +27,13 @@ public class ContainerController {
     @PostMapping("/containers")
     public String createContainer(@ModelAttribute Container container) {
         containerService.saveContainer(container);
-        return "redirect:/containers/";
+        return "redirect:/containers";
+    }
+
+    @PostMapping(value = "/containers/newCon")
+    public String saveContainer(@ModelAttribute Container container) {
+        Container savedContainer = containerService.saveContainer(container);
+        return "redirect:/containers/find" + savedContainer.getContainerIdNumber();
     }
 
     @GetMapping("/containers/add/model")
@@ -47,6 +50,14 @@ public class ContainerController {
         } else
             return modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
     }
+
+//    @GetMapping("/containers/find/{id}")
+//    public ModelAndView findContainerById(@PathVariable String id) {
+//        ModelAndView modelAndView = new ModelAndView("findContainer");
+//        Container container = containerService.findContainerByIdAfterAdd(id);
+//        modelAndView.addObject(container);
+//        return modelAndView;
+//    }
 
     @PostMapping("/containers/update")
     public ModelAndView updateContainer(@ModelAttribute Container container) {

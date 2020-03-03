@@ -1,7 +1,6 @@
 package com.containers.service;
 
 import com.containers.exceptions.ContainerNotFoundException;
-import com.containers.exceptions.ContainerNotFoundForShipownerException;
 import com.containers.model.Container;
 import com.containers.repository.ContainerRepository;
 import org.springframework.stereotype.Service;

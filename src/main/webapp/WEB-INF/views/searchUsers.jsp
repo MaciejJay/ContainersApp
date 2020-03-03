@@ -40,37 +40,36 @@
         width: 100%;">
 
     <div class="inside"
-         style="position: absolute;
-         top: 30%;
-         background-size: cover;
-         -webkit-background-clip: text;
-         padding-right: 20%;">
+         align="center"
+         style="top: 10%;">
 
-        <div class="background" style="position: relative;
-        background-size: cover;
-        left: 50%;
-        border-radius: 5px;
-        width: 250px;
-        height: 250px;">
+        <form method="get" action="/search">
+            <input type="text" name="keyword"/> &nbsp;
+            <input type="submit" value="Search"/>
+        </form>
 
-            <div class="form" style="position: absolute;
-            top: 20%;
-            left: 20%;">
-                <table>
-                    <form action="/users/find" method="get">
-                        <input type="text" placeholder="Username" name="username" required>
-                        <p style="color: red;">
-                        </p>
-                        <button type="submit">Find User</button>
-                    </form>
-                </table>
-                <br/>
-                <button onclick="window.location.href='/'" type="submit" class="pure-button pure-button-primary">
-                    Back to main page
-                </button>
-            </div>
-        </div>
+        <table border="1" cellpadding="5" style="background-color: white;">
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>E-mail</th>
+            </tr>
+            <c:forEach items="${searchingUser}" var="users">
+                <tr>
+                    <td>${users.username}</td>
+                    <td>${users.firstName}</td>
+                    <td>${users.lastName}</td>
+                    <td>${users.email}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <button onclick="window.location.href='/'" type="submit" class="pure-button pure-button-primary">
+            Back to main page
+        </button>
     </div>
+</div>
+</div>
 </div>
 </body>
 </html>
