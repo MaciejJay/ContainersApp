@@ -42,47 +42,38 @@
         height: 100%;
         width: 100%;">
 
-    <div class="inside" style="position: absolute;
-            top: 30%;
-            background-size: cover;
-            -webkit-background-clip: text;
-            padding-left: 32%;">
 
-        <div class="form" style="position: absolute;">
-            <form class="form" method="get" action="mailto:" enctype="text/plain">
-                <center>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="Email" placeholder="Your email..">
-                    <p>
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <div class="inside"
+             style="top: 20%;
+            left: 30%;">
 
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-                    </p>
-                    <div>
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="Subject.."/>
-                    </div>
-
-                    <label for="message"></label>
-                    <textarea id="message" name="message" placeholder="Write something.." style="height:200px;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;"></textarea>
-
-                    <br/>
-                    <input type="submit" value="Send">
-                    <input type="reset" value="Clear">
-                </center>
-            </form>
-        </div>
+        <form method="post" action="/sendEmail.do" enctype="multipart/form-data">
+            <table border="0" width="80%">
+                <tr>
+                    <td>Email To:</td>
+                    <td><input type="email" name="mailTo" size="65"/></td>
+                </tr>
+                <tr>
+                    <td>Subject:</td>
+                    <td><input type="text" name="subject" size="65"/></td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td><textarea cols="50" rows="10" name="message"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Add file:</td>
+                    <td><input type="file" name="attachFile" size="60"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Send E-mail"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
+</div>
 </div>
 </body>
 </html>
