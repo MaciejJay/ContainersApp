@@ -59,62 +59,10 @@ public class ContainerController {
         containerService.deleteContainer(containerNo);
         return "redirect:/containers/";
     }
-
-    //    @GetMapping(value = "/containers/add")
-//    public ModelAndView containerAdd() {
-//        ModelAndView modelAndView = new ModelAndView("addNewContainer");
-//        modelAndView.addObject("newContainer", new Container());
-//        modelAndView.addObject("updateContainer", false);
-//        return modelAndView;
-//    }
-//
-//    @PostMapping("/containers")
-//    public String createContainer(@ModelAttribute Container container) {
-//        containerService.saveContainer(container);
-//        return "redirect:/containers";
-//    }
-//
-//    @PostMapping(value = "/containers/newCon")
-//    public String saveContainer(@ModelAttribute Container container) {
-//        Container savedContainer = containerService.saveContainer(container);
-//        return "redirect:/containers/find" + savedContainer.getContainerIdNumber();
-//    }
 //
 //    @GetMapping("/containers/add/model")
 //    public ModelAndView containersAddModel() {
 //        ModelAndView modelAndView = new ModelAndView("containerModel");
 //        return new ModelAndView("containerModel");
 //    }
-//
-//    @GetMapping(value = "/containers/find")
-//    public ModelAndView findContainer(@RequestParam String containerNo) {
-//        ModelAndView modelAndView = new ModelAndView("findContainer");
-//        if (containerNo == null) {
-//            return modelAndView.addObject("findContainer", containerService.findAllContainers());
-//        } else
-//            return modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
-//    }
-//
-////    @GetMapping("/containers/find/{id}")
-////    public ModelAndView findContainerById(@PathVariable String id) {
-////        ModelAndView modelAndView = new ModelAndView("findContainer");
-////        Container container = containerService.findContainerByIdAfterAdd(id);
-////        modelAndView.addObject(container);
-////        return modelAndView;
-////    }
-//
-//    @PostMapping("/containers/update")
-//    public ModelAndView updateContainer(@ModelAttribute Container container) {
-//        ModelAndView modelAndView = new ModelAndView("updateContainer");
-//        modelAndView.addObject("updateContainer", containerService.updateContainer(container));
-//        return modelAndView;
-//    }
-//
-//    @GetMapping("/containers/delete")
-//    public String deleteContainer(@RequestParam String containerNo) {
-//        containerService.deleteContainer(containerNo);
-//        return "redirect:/containers";
-//    }
-
-
 }
