@@ -1,8 +1,10 @@
 package com.containers.service;
 
+import com.containers.exceptions.ContainerAlreadyExistException;
 import com.containers.exceptions.ContainerNotFoundException;
 import com.containers.model.Container;
 import com.containers.repository.ContainerRepository;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -23,7 +25,11 @@ public class ContainerService {
     }
 
     public Container saveContainer(Container container) {
-        return containerRepository.save(container);
+        if (!containerRepository.existsById(container.getContainerIdNumber())) {
+            return containerRepository.save(container);
+        } else {
+            throw new ContainerAlreadyExistException("Container already exist");
+        }
     }
 
     public Container updateContainer(Container container) {
@@ -39,6 +45,15 @@ public class ContainerService {
         Optional<Container> containerById = containerRepository.findById(noContainer);
         if (containerById.isPresent()) {
             return containerById.get();
+        } else throw new ContainerNotFoundException("Container not found");
+    }
+
+    public Set<Container> findContainerByIdSet(String noContainer) {
+        Optional<Container> containerById = containerRepository.findById(noContainer);
+        if (containerById.isPresent()) {
+            Set<Container> containers = new HashSet<>();
+            containers.add(containerById.get());
+            return containers;
         } else throw new ContainerNotFoundException("Container not found");
     }
 }
