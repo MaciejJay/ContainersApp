@@ -101,7 +101,6 @@
         <a href="/menu">Back to home page</a>
         <a href="/containers/">Back to containers page</a>
     </div>
-
 </div>
 </body>
 </html>
