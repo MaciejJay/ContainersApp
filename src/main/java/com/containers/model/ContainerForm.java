@@ -13,9 +13,9 @@ public class ContainerForm {
     @GeneratedValue(generator = "containerFormSeq")
     @SequenceGenerator(name = "containerFormSeq", sequenceName = "container_form_seq", allocationSize = 1)
     private Long id;
-    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = ALL)
     private Container container;
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = ALL)
     private User user;
     private LocalDate addDate;
 

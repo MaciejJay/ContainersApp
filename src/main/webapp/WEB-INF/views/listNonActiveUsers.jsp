@@ -1,7 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01
+Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <title>Search users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>User Manager</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -14,9 +21,6 @@
         body {
             font-family: Arial, serif;
             font-size: 17px;
-            font-weight: bold;
-            color: white;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
 
         .outside {
@@ -33,12 +37,13 @@
             position: absolute;
             width: 100%;
         }
+
     </style>
 </head>
 <body>
-
 <div class="outside">
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 
@@ -46,10 +51,7 @@
          align="center"
          style="top: 10%;">
 
-        <form method="get" action="/search">
-            <input type="text" name="keyword"/> &nbsp;
-            <input type="submit" value="Search"/>
-        </form>
+        <h2>Deleted Users</h2>
 
         <table border="1" cellpadding="5" style="background-color: white;">
             <tr>
@@ -58,12 +60,12 @@
                 <th>Last Name</th>
                 <th>E-mail</th>
             </tr>
-            <c:forEach items="${searchingUser}" var="users">
+            <c:forEach items="${listDeleted}" var="user">
                 <tr>
-                    <td>${users.username}</td>
-                    <td>${users.firstName}</td>
-                    <td>${users.lastName}</td>
-                    <td>${users.email}</td>
+                    <td>${user.username}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
                 </tr>
             </c:forEach>
         </table>
@@ -71,7 +73,6 @@
             Back to main page
         </button>
     </div>
-</div>
 </div>
 </div>
 </body>

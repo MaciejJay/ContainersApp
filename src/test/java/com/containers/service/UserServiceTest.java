@@ -12,6 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -39,15 +41,6 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldFindUserByUsername() {
-        // when
-        User user = sut.findUserByUsername("przydan");
-
-        // then
-        assertThat(user.getUsername().equals("przydan")).isNotNull();
-    }
-
-    @Test
     public void shouldThrowUserNotFoundException() {
         // then
         assertThatThrownBy(
@@ -55,23 +48,23 @@ public class UserServiceTest {
                 .isInstanceOf(UserNotFoundException.class);
     }
 
-    @Test
-    @Transactional
-    public void shouldDeleteUserByUsername() {
-        // given
-        User user = new User("usernameTest", "firstNameTest",
-                "lastNameTest", "emailTest@test.com", null);
-
-        //when
-        sut.saveUser(user);
-
-        // then
-        assertThat(sut.findUserByUsername("usernameTest")).isNotNull();
-        sut.deleteUser("usernameTest");
-        assertThatThrownBy(
-                () -> sut.findUserByUsername("usernameTest"))
-                .isInstanceOf(UserNotFoundException.class);
-    }
+//    @Test
+//    @Transactional
+//    public void shouldDeleteUserByUsername() {
+//        // given
+//        User user = new User("usernameTest", "firstNameTest",
+//                "lastNameTest", "emailTest@test.com", null);
+//
+//        //when
+//        sut.saveUser(user);
+//
+//        // then
+//        assertThat(sut.findUserByUsername("usernameTest")).isNotNull();
+//        sut.deleteUser("usernameTest");
+//        assertThatThrownBy(
+//                () -> sut.findUserByUsername("usernameTest"))
+//                .isInstanceOf(UserNotFoundException.class);
+//    }
 
     @Test
     @Transactional

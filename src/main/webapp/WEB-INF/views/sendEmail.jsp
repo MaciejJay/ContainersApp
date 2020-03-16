@@ -38,16 +38,15 @@
 <body>
 <div class="outside">
 
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 
-
-        <div class="inside"
-             style="top: 20%;
+    <div class="inside"
+         style="top: 20%;
             left: 30%;">
 
-        <form method="post" action="/sendEmail.do" enctype="multipart/form-data">
+        <form method="post" action="/sendMail" enctype="multipart/form-data">
             <table border="0" width="80%">
                 <tr>
                     <td>Email To:</td>
@@ -73,7 +72,6 @@
             </table>
         </form>
     </div>
-</div>
 </div>
 </body>
 </html>

@@ -51,14 +51,6 @@ public class ContainerController {
             return modelAndView.addObject("findContainer", containerService.findContainerById(containerNo));
     }
 
-//    @GetMapping("/containers/find/{id}")
-//    public ModelAndView findContainerById(@PathVariable String id) {
-//        ModelAndView modelAndView = new ModelAndView("findContainer");
-//        Container container = containerService.findContainerByIdAfterAdd(id);
-//        modelAndView.addObject(container);
-//        return modelAndView;
-//    }
-
     @PostMapping("/containers/update")
     public ModelAndView updateContainer(@ModelAttribute Container container) {
         ModelAndView modelAndView = new ModelAndView("updateContainer");
