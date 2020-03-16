@@ -46,15 +46,16 @@
         height: 100%;
         width: 100%;">
 
-    <<div class="inside"
-          style="top: 20%;
+    <
+    <div class="inside"
+         style="top: 20%;
             left: 30%;">
 
-            <center>
-                <h2>Sorry, the email was not sent because of the following error:</h2>
-                <h3>${exception.message}</h3>
-            </center>
-        </div>
+        <center>
+            <h2>Sorry, the email was not sent because of the following error:</h2>
+            <h3>${exception.message}</h3>
+        </center>
     </div>
 </div>
+</body>
 </html>

@@ -7,15 +7,15 @@
 
 <body>
 <div class="images">
-    <a href="/containers/add">
+    <a href="/containers">
         <img border="0" alt="add" src="/images/plus.png" width="300" height="300" style="left: 20%;
         position: absolute;
-        top: 1%">
+        top: auto">
     </a>
     <a href="/containers/find">
         <img border="0" alt="add" src="/images/history.png" width="300" height="300" style="left: 60%;
         position: absolute;
-        top: 1%">
+        top: auto">
     </a>
     <a href="/containers/status">
         <img border="0" alt="add" src="/images/status.png" width="300" height="300" style="left: 20%;

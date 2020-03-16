@@ -48,6 +48,7 @@
 
         <form method="post" action="/sendMail" enctype="multipart/form-data">
             <table border="0" width="80%">
+
                 <tr>
                     <td>Email To:</td>
                     <td><input type="email" name="mailTo" size="65"/></td>
@@ -58,7 +59,7 @@
                 </tr>
                 <tr>
                     <td>Message:</td>
-                    <td><textarea cols="50" rows="10" name="message"></textarea></td>
+                    <td><textarea cols="60" rows="10" name="message"></textarea></td>
                 </tr>
                 <tr>
                     <td>Add file:</td>
