@@ -15,8 +15,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = Role.class, fetch = FetchType.LAZY, cascade = ALL)
     private Role role;
+    private boolean wasReleased;
 
     public User() {
     }
@@ -40,6 +41,16 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String username, String firstName, String lastName, String email, String password, Role role, boolean wasReleased) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.wasReleased = wasReleased;
     }
 
     public String getUsername() {
@@ -90,21 +101,31 @@ public class User {
         this.password = password;
     }
 
+    public boolean isWasReleased() {
+        return wasReleased;
+    }
+
+    public void setWasReleased(boolean wasReleased) {
+        this.wasReleased = wasReleased;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) &&
+        return wasReleased == user.wasReleased &&
+                Objects.equals(username, user.username) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, firstName, lastName, email, password);
+        return Objects.hash(username, firstName, lastName, email, password, role, wasReleased);
     }
 
     @Override
@@ -115,6 +136,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
+                ", isDeleted=" + wasReleased +
                 '}';
     }
 }

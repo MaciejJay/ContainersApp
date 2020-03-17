@@ -6,25 +6,23 @@ import java.io.InputStream;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import com.containers.model.User;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
-@RequestMapping("/sendEmail.do")
+@RequestMapping("/sendMail")
 public class SendEmailController {
 
     private JavaMailSender mailSender;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String sendMail(HttpServletRequest request, final @RequestParam CommonsMultipartFile multipartFile) {
+    public String sendMail(HttpServletRequest request, final @RequestParam CommonsMultipartFile attachFile) {
 
         final String emailTo = request.getParameter("mailTo");
         final String subject = request.getParameter("subject");
@@ -33,7 +31,7 @@ public class SendEmailController {
         System.out.println("emailTo: " + emailTo);
         System.out.println("subject: " + subject);
         System.out.println("message: " + message);
-        System.out.println("attachFile: " + multipartFile.getOriginalFilename());
+        System.out.println("attachFile: " + attachFile.getOriginalFilename());
 
         mailSender.send(new MimeMessagePreparator() {
 
@@ -45,14 +43,14 @@ public class SendEmailController {
                 messageHelper.setSubject(subject);
                 messageHelper.setText(message);
 
-                String attachName = multipartFile.getOriginalFilename();
-                if (!multipartFile.equals("")) {
+                String attachName = attachFile.getOriginalFilename();
+                if (!attachFile.equals("")) {
 
                     messageHelper.addAttachment(attachName, new InputStreamSource() {
 
                         @Override
                         public InputStream getInputStream() throws IOException {
-                            return multipartFile.getInputStream();
+                            return attachFile.getInputStream();
                         }
                     });
                 }
@@ -60,7 +58,6 @@ public class SendEmailController {
             }
 
         });
-
-        return "Result";
+        return "ResultSendMail";
     }
 }
