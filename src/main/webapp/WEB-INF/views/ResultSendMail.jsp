@@ -41,11 +41,11 @@
         width: 100%;">
 
     <div class="inside"
-         style="top: 20%;
-            left: 30%;">
-            <center>
-                <h2>Thank you, your email has been sent.</h2>
-            </center>
+         style="top: 20px;
+            left: 20px;">
+            <table>
+                <td><h2>Thank you, your email has been sent.</h2></td>
+            </table>
         </div>
     </div>
 </div>

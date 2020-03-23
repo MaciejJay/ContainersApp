@@ -38,15 +38,6 @@ public class ContainerFormServiceTest {
     private ContainerFormRepository repository;
 
     @Test
-    public void shouldFindAllContainerForms() {
-        //when
-        Set<ContainerForm> actual = sut.findAllContainerForm();
-
-        //then
-        assertThat(actual.size()).isEqualTo(6);
-    }
-
-    @Test
     @Transactional
     public void shouldAddNewContainerForms() {
         //given
@@ -73,5 +64,4 @@ public class ContainerFormServiceTest {
         assertThat(actual.getUser().getUsername()).isEqualTo("przydan");
         assertThat(actual.getAddDate()).isEqualTo(LocalDate.now());
     }
-
 }
