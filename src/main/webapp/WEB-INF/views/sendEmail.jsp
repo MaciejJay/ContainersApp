@@ -51,7 +51,7 @@
 
                 <tr>
                     <td>Email To:</td>
-                    <td><input type="email" name="mailTo" size="65"/></td>
+                    <td><input type="email" name="emailTo" size="65"/></td>
                 </tr>
                 <tr>
                     <td>Subject:</td>
@@ -62,12 +62,10 @@
                     <td><textarea cols="60" rows="10" name="message"></textarea></td>
                 </tr>
                 <tr>
-                    <td>Add file:</td>
-                    <td><input type="file" name="attachFile" size="60"/></td>
-                </tr>
-                <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="Send E-mail"/>
+                        <button class="pure-button" type="submit" value="submit">Send E-mail</button>
+
+                        <button class="pure-button" type="reset">Clear</button>
                     </td>
                 </tr>
             </table>
