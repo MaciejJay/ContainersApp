@@ -1,14 +1,9 @@
 package com.containers.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.Objects;
 import java.util.Set;
-
-import static javax.persistence.CascadeType.*;
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 public class Container {
@@ -17,25 +12,15 @@ public class Container {
     private String containerIdNumber;
     private String containerType;
     private String containerShipOwner;
-    @Column(unique = true)
-    private String containerNoPin;
-
-    @OneToMany(targetEntity = Damage.class,
-            fetch = LAZY,
-            cascade = ALL)
-
-    private Set<Damage> containerDamage;
 
 
     public Container() {
     }
 
-    public Container(String containerIdNumber, String containerType, String containerShipOwner, String containerNoPin, Set<Damage> containerDamage) {
+    public Container(String containerIdNumber, String containerType, String containerShipOwner) {
         this.containerIdNumber = containerIdNumber;
         this.containerType = containerType;
         this.containerShipOwner = containerShipOwner;
-        this.containerNoPin = containerNoPin;
-        this.containerDamage = containerDamage;
     }
 
     public String getContainerIdNumber() {
@@ -62,22 +47,6 @@ public class Container {
         this.containerShipOwner = containerShipOwner;
     }
 
-    public String getContainerNoPin() {
-        return containerNoPin;
-    }
-
-    public void setContainerNoPin(String containerNoPin) {
-        this.containerNoPin = containerNoPin;
-    }
-
-    public Set<Damage> getContainerDamage() {
-        return containerDamage;
-    }
-
-    public void setContainerDamage(Set<Damage> containerDamage) {
-        this.containerDamage = containerDamage;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,14 +54,12 @@ public class Container {
         Container container = (Container) o;
         return Objects.equals(containerIdNumber, container.containerIdNumber) &&
                 Objects.equals(containerType, container.containerType) &&
-                Objects.equals(containerShipOwner, container.containerShipOwner) &&
-                Objects.equals(containerNoPin, container.containerNoPin) &&
-                Objects.equals(containerDamage, container.containerDamage);
+                Objects.equals(containerShipOwner, container.containerShipOwner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(containerIdNumber, containerType, containerShipOwner, containerNoPin, containerDamage);
+        return Objects.hash(containerIdNumber, containerType, containerShipOwner);
     }
 
     @Override
@@ -101,8 +68,6 @@ public class Container {
                 "containerIdNumber='" + containerIdNumber + '\'' +
                 ", containerType='" + containerType + '\'' +
                 ", containerShipOwner='" + containerShipOwner + '\'' +
-                ", containerNoPin='" + containerNoPin + '\'' +
-                ", containerDamage=" + containerDamage +
                 '}';
     }
 }

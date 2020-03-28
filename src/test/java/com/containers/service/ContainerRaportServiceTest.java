@@ -1,16 +1,16 @@
 package com.containers.service;
 
 import com.containers.model.Container;
-import com.containers.model.ContainerForm;
+import com.containers.model.ContainerRaport;
 import com.containers.model.User;
-import com.containers.repository.ContainerFormRepository;
+import com.containers.repository.ContainerRaportRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class ContainerFormServiceTest {
+public class ContainerRaportServiceTest {
 
     private User user(String username) {
         User user = new User();
@@ -33,27 +33,27 @@ public class ContainerFormServiceTest {
     }
 
     @Autowired
-    private ContainerFormService sut;
+    private ContainerRaportService sut;
     @Autowired
-    private ContainerFormRepository repository;
+    private ContainerRaportRepository repository;
 
-    @Test
-    public void shouldFindAllContainerForms() {
-        //when
-        Set<ContainerForm> actual = sut.findAllContainerForm();
-
-        //then
-        assertThat(actual.size()).isEqualTo(6);
-    }
+//    @Test
+//    public void shouldFindAllContainerForms() {
+//        //when
+//        Set<ContainerRaport> actual = sut.findAllContainerRapports();
+//
+//        //then
+//        assertThat(actual.size()).isEqualTo(6);
+//    }
 
     @Test
     @Transactional
     public void shouldAddNewContainerForms() {
         //given
-        ContainerForm newContainerForm = new ContainerForm(7L, null, user("wichni"), LocalDate.now());
+        ContainerRaport newContainerRaport = new ContainerRaport(null, user("wichni"), LocalDate.now());
 
         //when
-        ContainerForm actual = sut.saveContainerForm(newContainerForm);
+        ContainerRaport actual = sut.saveContainerRaport(newContainerRaport);
 
         //then
         assertThat(actual.getId()).isEqualTo(7L);
@@ -64,14 +64,23 @@ public class ContainerFormServiceTest {
     @Transactional
     public void shouldUpdateContainerForm() {
         //given
-        ContainerForm updateContainerForm = new ContainerForm(1L, null, user("przydan"), LocalDate.now());
+        ContainerRaport updateContainerRaport = new ContainerRaport(null, user("przydan"), LocalDate.now());
 
         //when
-        ContainerForm actual = sut.saveContainerForm(updateContainerForm);
+        ContainerRaport actual = sut.saveContainerRaport(updateContainerRaport);
 
         //then
         assertThat(actual.getUser().getUsername()).isEqualTo("przydan");
         assertThat(actual.getAddDate()).isEqualTo(LocalDate.now());
     }
 
+    @Test
+    @Transactional // TODO: ojoooj error bez tranzakcji
+    void findAllContainerRapports() {
+        // when
+        Set<ContainerRaport> actual = sut.findAllContainerRapports("MRKU 9875432");
+        // then
+        actual.forEach(System.out :: println);
+        assertThat(actual.size()).isEqualTo(3);
+    }
 }

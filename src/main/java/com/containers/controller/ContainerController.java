@@ -26,7 +26,7 @@ public class ContainerController {
     }
 
     @GetMapping("/add")
-    public ModelAndView createContainerView() {
+    public ModelAndView createContainerViewForm() {
         ModelAndView modelAndView = new ModelAndView("addContainer");
         modelAndView.addObject("container", new Container());
         modelAndView.addObject("update", false);
@@ -53,16 +53,9 @@ public class ContainerController {
         return "redirect:/containers/";
     }
 
-
     @GetMapping("/delete/{containerNo}")
     public String deleteContainer(@PathVariable String containerNo) {
         containerService.deleteContainer(containerNo);
         return "redirect:/containers/";
     }
-//
-//    @GetMapping("/containers/add/model")
-//    public ModelAndView containersAddModel() {
-//        ModelAndView modelAndView = new ModelAndView("containerModel");
-//        return new ModelAndView("containerModel");
-//    }
 }

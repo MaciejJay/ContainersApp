@@ -106,9 +106,7 @@
                     <th>show all rapports</th>
                 </tr>
                 </thead>
-
                 <tbody>
-                <ol>
                     <%int i = 0; %>
                     <c:forEach items="${containerSet}" var="container">
                         <tr>
@@ -121,7 +119,7 @@
                             <td>
                                 <form>
                                     <button class="pure-button" type="submit"
-                                            formaction="/raport/add/${container.containerIdNumber}"
+                                            formaction="/raport/${container.containerIdNumber}"
                                             name="add raport">Add raport
                                     </button>
                                 </form>
@@ -129,14 +127,13 @@
                             <td>
                                 <form>
                                     <button class="pure-button" type="submit"
-                                            formaction="/raport/get/${container.containerIdNumber}"
-                                            name="Show all raport">Show all raport
+                                            formaction="/rapports/${container.containerIdNumber}">
+                                        Show all raport
                                     </button>
                                 </form>
                             </td>
                         </tr>
                     </c:forEach>
-                </ol>
                 </tbody>
             </table>
         </div>

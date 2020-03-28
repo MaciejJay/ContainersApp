@@ -17,19 +17,19 @@ public class Damage {
     @Enumerated(EnumType.STRING)
     private Side side;
 
-    @ManyToOne(targetEntity = ContainerForm.class)
-    private ContainerForm containerForm;
+    @ManyToOne(targetEntity = ContainerRaport.class)
+    private ContainerRaport containerRaport;
 
     public Damage() {
     }
 
-    public Damage(Long id, String description, String image, DamageType damageType, Side side, ContainerForm containerForm) {
+    public Damage(Long id, String description, String image, DamageType damageType, Side side, ContainerRaport containerRaport) {
         this.id = id;
         this.description = description;
         this.image = image;
         this.damageType = damageType;
         this.side = side;
-        this.containerForm = containerForm;
+        this.containerRaport = containerRaport;
     }
 
     public Long getId() {
@@ -72,12 +72,12 @@ public class Damage {
         this.side = side;
     }
 
-    public ContainerForm getContainerForm() {
-        return containerForm;
+    public ContainerRaport getContainerRaport() {
+        return containerRaport;
     }
 
-    public void setContainerForm(ContainerForm containerForm) {
-        this.containerForm = containerForm;
+    public void setContainerRaport(ContainerRaport containerRaport) {
+        this.containerRaport = containerRaport;
     }
 
     @Override
@@ -90,12 +90,12 @@ public class Damage {
                 Objects.equals(image, damage.image) &&
                 Objects.equals(damageType, damage.damageType) &&
                 side == damage.side &&
-                Objects.equals(containerForm, damage.containerForm);
+                Objects.equals(containerRaport, damage.containerRaport);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, image, damageType, side, containerForm);
+        return Objects.hash(id, description, image, damageType, side, containerRaport);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Damage {
                 ", image='" + image + '\'' +
                 ", damageType=" + damageType +
                 ", side=" + side +
-                ", containerForm=" + containerForm +
+                ", containerRaport=" + containerRaport +
                 '}';
     }
 }

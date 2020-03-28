@@ -1,11 +1,14 @@
 package com.containers.model;
 
+import org.springframework.context.annotation.Scope;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 import static javax.persistence.CascadeType.*;
 
 @Entity
+@Scope()
 @Table(name = "users")
 public class User {
 
@@ -41,6 +44,20 @@ public class User {
         this.password = password;
         this.role = role;
     }
+
+    public User(String username, String firstName, String lastName, String email) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
 
     public String getUsername() {
         return username;

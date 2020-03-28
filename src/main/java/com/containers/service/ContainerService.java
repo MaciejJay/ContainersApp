@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,6 +49,7 @@ public class ContainerService {
         } else throw new ContainerNotFoundException("Container not found");
     }
 
+    // TODO: stream.findfirst.orelse lub iterator
     public Set<Container> findContainerByIdSet(String noContainer) {
         Optional<Container> containerById = containerRepository.findById(noContainer);
         if (containerById.isPresent()) {

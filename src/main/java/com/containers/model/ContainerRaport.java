@@ -3,27 +3,35 @@ package com.containers.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
-public class ContainerForm {
+public class ContainerRaport {
 
     @Id
-    @GeneratedValue(generator = "containerFormSeq")
-    @SequenceGenerator(name = "containerFormSeq", sequenceName = "container_form_seq", allocationSize = 1)
+    @GeneratedValue(generator = "containerRaportSeq")
+    @SequenceGenerator(name = "containerRaportSeq", sequenceName = "container_raport_seq", allocationSize = 1)
     private Long id;
     @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private Container container;
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     private User user;
     private LocalDate addDate;
+    @Column(unique = true)
+    private String containerNoPin;
 
-    public ContainerForm() {
+    @OneToMany(targetEntity = Damage.class,
+            fetch = LAZY,
+            cascade = ALL)
+    private Set<Damage> containerDamage;
+
+    public ContainerRaport() {
     }
 
-    public ContainerForm(Long id, Container container, User user, LocalDate addDate) {
-        this.id = id;
+    public ContainerRaport(Container container, User user, LocalDate addDate) {
         this.container = container;
         this.user = user;
         this.addDate = addDate;
@@ -65,7 +73,7 @@ public class ContainerForm {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ContainerForm that = (ContainerForm) o;
+        ContainerRaport that = (ContainerRaport) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(container, that.container) &&
                 Objects.equals(user, that.user) &&
@@ -79,7 +87,7 @@ public class ContainerForm {
 
     @Override
     public String toString() {
-        return "ContainerForm{" +
+        return "ContainerRaport{" +
                 "id=" + id +
                 ", container=" + container +
                 ", user=" + user +
