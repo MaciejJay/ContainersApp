@@ -43,7 +43,7 @@
 <body>
 <div class="outside">
 
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 

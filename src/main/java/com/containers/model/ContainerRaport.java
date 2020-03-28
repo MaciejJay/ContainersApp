@@ -15,9 +15,9 @@ public class ContainerRaport {
     @GeneratedValue(generator = "containerRaportSeq")
     @SequenceGenerator(name = "containerRaportSeq", sequenceName = "container_raport_seq", allocationSize = 1)
     private Long id;
-    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = Container.class, fetch = FetchType.LAZY, cascade = ALL)
     private Container container;
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = ALL)
     private User user;
     private LocalDate addDate;
     @Column(unique = true)

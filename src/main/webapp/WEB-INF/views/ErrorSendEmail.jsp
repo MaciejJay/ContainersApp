@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jakub
-  Date: 03.03.2020
-  Time: 21:22
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -46,15 +39,16 @@
         height: 100%;
         width: 100%;">
 
-    <<div class="inside"
-          style="top: 20%;
+    <
+    <div class="inside"
+         style="top: 20%;
             left: 30%;">
 
-            <center>
-                <h2>Sorry, the email was not sent because of the following error:</h2>
-                <h3>${exception.message}</h3>
-            </center>
-        </div>
+        <center>
+            <h2>Sorry, the email was not sent because of the following error:</h2>
+            <h3>${exception.message}</h3>
+        </center>
     </div>
 </div>
+</body>
 </html>

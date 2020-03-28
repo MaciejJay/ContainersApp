@@ -1,5 +1,6 @@
 package com.containers.service;
 
+import com.containers.exceptions.UserAlreadyExistException;
 import com.containers.exceptions.UserNotFoundException;
 import com.containers.model.User;
 import com.containers.repository.UserRepository;
@@ -18,35 +19,43 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Set<User> findAllUser() {
-        return new HashSet<>(userRepository.findAll());
+    public Set<User> findAllNonDeletedUser() {
+        return userRepository.findUsersByWasReleasedFalse();
+    }
+
+    public Set<User> findDeletedUsers() {
+        return userRepository.findUsersByWasReleasedTrue();
     }
 
     public User saveUser(User user) {
-        return userRepository.save(user);
+        if (!userRepository.existsById(user.getUsername())) {
+            return userRepository.save(user);
+        } else {
+            throw new UserAlreadyExistException("User already exist");
+        }
     }
 
-    public User findUserByUsername(String username) {
+    public Set<User> findUserByUsername(String username) {
         Optional<User> userById = userRepository.findById(username);
         if (userById.isPresent()) {
-            return userById.get();
+            Set<User> userSet = new HashSet<>();
+            userSet.add(userById.get());
+            return userSet;
         } else throw new UserNotFoundException("User not found");
     }
 
-    public User updateUser(User user) {
-        userRepository.deleteById(user.getUsername());
-        return userRepository.save(user);
+    public User findUserById(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else throw new UserNotFoundException("User not found");
     }
 
-    public Set<User> searchUsers(String keyword) {
-        return new HashSet<>(userRepository.search(keyword));
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 
     public void deleteUser(String username) {
-        userRepository.deleteById(username);
-    }
-
-    public User findById(String username) {
-        return userRepository.findById(username).get();
+        userRepository.deleteUserFromPrimaryListAndAddUserToWasReleasedList(username);
     }
 }

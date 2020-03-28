@@ -29,8 +29,7 @@ public class AppController {
     }
 
     @GetMapping("/email/send")
-    public ModelAndView sendEmail() {
-        return new ModelAndView("sendEmail");
+    public String sendEmail() {
+        return "sendEmail";
     }
-
 }

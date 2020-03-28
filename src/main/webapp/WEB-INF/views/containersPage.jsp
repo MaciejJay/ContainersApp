@@ -20,9 +20,7 @@
         body {
             font-family: Arial, serif;
             font-size: 17px;
-            font-weight: bold;
-            color: white;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            color: black;
         }
 
         .outside {
@@ -37,7 +35,7 @@
 
         .inside {
             position: absolute;
-            top: 30%;
+            top: 10%;
             background: darkgrey;
             background-size: cover;
             -webkit-background-clip: text;
@@ -52,11 +50,11 @@
         .pure-input {
             font-family: Arial, serif;
             font-size: 17px;
-            font-weight: bold;
             color: black;
         }
 
     </style>
+    <title></title>
 </head>
 
 </head>
@@ -102,8 +100,8 @@
                     <th>PDF</th>
                     <th>DELETE</th>
                     <th>UPDATE</th>
-                    <th>add raport</th>
-                    <th>show all rapports</th>
+                    <th>add report</th>
+                    <th>show all reports</th>
                 </tr>
                 </thead>
                 <tbody>

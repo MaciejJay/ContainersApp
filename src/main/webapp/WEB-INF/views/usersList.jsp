@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01
 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,7 +43,7 @@ Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <body>
 <div class="outside">
 
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 
@@ -52,11 +53,12 @@ Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
         <h2>User Manager</h2>
 
-        <form method="get" action="/search">
-            <input type="text" name="keyword"/> &nbsp;
+        <form method="get" action="/users">
+            <input type="text" name="username"/>
             <input type="submit" value="Search"/>
         </form>
-        <h3><a href="/new">New Users</a></h3>
+
+        <h3><a href="/users/add">New Users</a></h3>
         <table border="1" cellpadding="5" style="background-color: white;">
             <tr>
                 <th>Username</th>
@@ -64,16 +66,16 @@ Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
                 <th>Last Name</th>
                 <th>E-mail</th>
             </tr>
-            <c:forEach items="${listUsers}" var="users">
+            <c:forEach items="${listUsers}" var="user">
                 <tr>
-                    <td>${users.username}</td>
-                    <td>${users.firstName}</td>
-                    <td>${users.lastName}</td>
-                    <td>${users.email}</td>
+                    <td>${user.username}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
                     <td>
-                        <a href="/update/${users.username}">Edit</a>
+                        <a href="/users/update/${user.username}">Edit</a>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="/delete/${users.username}">Delete</a>
+                        <a href="/users/delete/${user.username}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

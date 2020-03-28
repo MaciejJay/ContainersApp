@@ -38,20 +38,20 @@
 <body>
 <div class="outside">
 
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 
-
-        <div class="inside"
-             style="top: 20%;
+    <div class="inside"
+         style="top: 20%;
             left: 30%;">
 
-        <form method="post" action="/sendEmail.do" enctype="multipart/form-data">
+        <form method="post" action="/sendMail" enctype="multipart/form-data">
             <table border="0" width="80%">
+
                 <tr>
                     <td>Email To:</td>
-                    <td><input type="email" name="mailTo" size="65"/></td>
+                    <td><input type="email" name="emailTo" size="65"/></td>
                 </tr>
                 <tr>
                     <td>Subject:</td>
@@ -59,21 +59,18 @@
                 </tr>
                 <tr>
                     <td>Message:</td>
-                    <td><textarea cols="50" rows="10" name="message"></textarea></td>
-                </tr>
-                <tr>
-                    <td>Add file:</td>
-                    <td><input type="file" name="attachFile" size="60"/></td>
+                    <td><textarea cols="60" rows="10" name="message"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="Send E-mail"/>
+                        <button class="pure-button" type="submit" value="submit">Send E-mail</button>
+
+                        <button class="pure-button" type="reset">Clear</button>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
-</div>
 </div>
 </body>
 </html>
