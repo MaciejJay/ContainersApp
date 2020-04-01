@@ -1,6 +1,9 @@
 package com.containers.controller;
 
-import com.containers.model.*;
+import com.containers.model.Damage;
+import com.containers.model.DamageType;
+import com.containers.model.Report;
+import com.containers.model.Side;
 import com.containers.model.formHelpers.ContainerNeeds;
 import com.containers.model.formHelpers.ContainerState;
 import com.containers.model.formHelpers.ReportFormDTO;
@@ -8,8 +11,6 @@ import com.containers.service.ContainerReportService;
 import com.containers.service.ContainerService;
 import com.containers.service.DamageService;
 import com.containers.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,8 +23,6 @@ import java.util.EnumSet;
 @Controller
 @RequestMapping("/reports")
 public class ContainerReportsFormController {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ContainerReportsFormController.class.getName());
 
     private final ContainerService containerService;
     private final ContainerReportService reportService;
@@ -61,13 +60,10 @@ public class ContainerReportsFormController {
 
     @PostMapping("/add")
     public String addRaport(@ModelAttribute ReportFormDTO reportFormDTO) {
-        LOG.info("||=-> reportFormDTO from addRaport method " + reportFormDTO);
-
         Report report = reportService.saveContainerReport(
                 new Report(
                         containerService.findContainerById(reportFormDTO.getContainerPrefixAndNo()),
                         userService.findUserById("przydan"),
-//                        new User("przydan", "Luigi", "Stradalle", "speed@dot.com", "strongpass", new Role("ADMIN")),
                         LocalDateTime.now(),
                         reportFormDTO.getRandomPin(),
                         reportFormDTO.getInOut(),
@@ -84,14 +80,14 @@ public class ContainerReportsFormController {
         damageService.saveContainerDamage(
                 new Damage(
                         reportFormDTO.getDescription(),
-                        "takie zdjecie",
+                        "testPathToImage",
                         reportFormDTO.getDamageType(),
                         Side.DOOR
                 ));
+
         containerService.addReport(report, reportFormDTO.getContainerPrefixAndNo());
+
         return "redirect:/reports/" + reportFormDTO.getContainerPrefixAndNo();
     }
-
-
 }
 
