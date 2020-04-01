@@ -1,0 +1,290 @@
+-- -- Database: container_db
+
+-- -- DROP DATABASE container_db;
+
+-- CREATE DATABASE container_db
+--     WITH
+--     OWNER = postgres
+--     ENCODING = 'UTF8'
+--     LC_COLLATE = 'Polish_Poland.1250'
+--     LC_CTYPE = 'Polish_Poland.1250'
+--     -- TABLESPACE = pg_default
+--     CONNECTION LIMIT = -1;
+
+-- ############################################################################
+-- 1. image
+-- Table: public.image
+
+DROP TABLE IF EXISTS public.image CASCADE;
+
+CREATE TABLE public.image
+(
+    id  bigint NOT NULL,
+    url character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT image_pkey PRIMARY KEY (id)
+)
+    TABLESPACE pg_default;
+
+ALTER TABLE public.image
+    OWNER to postgres;
+
+-- ############################################################################
+-- 2.report_damages
+-- Table: public.container_report_damages
+
+DROP TABLE IF EXISTS public.report_damages CASCADE;
+
+CREATE TABLE public.report_damages
+(
+    report_id  bigint NOT NULL,
+    damages_id bigint NOT NULL,
+    CONSTRAINT report_damages_pkey PRIMARY KEY (report_id, damages_id),
+    CONSTRAINT uk_8sc0jk38yo5knurf5l0yj0vn0 UNIQUE (damages_id),
+    CONSTRAINT fk27mnftoii0yrcef5bkmt96dr0 FOREIGN KEY (report_id)
+        REFERENCES public.report (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    CONSTRAINT fk3jq9jul0s300d1molvxdomb0k FOREIGN KEY (damages_id)
+        REFERENCES public.damage (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    TABLESPACE pg_default;
+
+ALTER TABLE public.report_damages
+    OWNER to postgres;
+
+-- ############################################################################
+-- 3. damage
+-- Table: public.damage
+
+DROP TABLE IF EXISTS public.damage CASCADE;
+
+CREATE TABLE public.damage
+(
+    id          bigint NOT NULL,
+    damage_type character varying(255) COLLATE pg_catalog."default",
+    description character varying(255) COLLATE pg_catalog."default",
+    image       character varying(255) COLLATE pg_catalog."default",
+    side        character varying(255) COLLATE pg_catalog."default",
+    report_id   bigint,
+    CONSTRAINT damage_pkey PRIMARY KEY (id),
+    CONSTRAINT fk6a6ohel2dpr1yg918l5wimlj6 FOREIGN KEY (report_id)
+        REFERENCES public.report (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    TABLESPACE pg_default;
+
+ALTER TABLE public.damage
+    OWNER to postgres;
+
+
+-- ############################################################################
+-- 4. container_reports
+-- ############################################################################
+-- Table: public.container_reports
+
+DROP TABLE public.container_reports CASCADE;
+
+CREATE TABLE public.container_reports
+(
+    container_container_id_number character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    reports_id bigint NOT NULL,
+    CONSTRAINT container_reports_pkey PRIMARY KEY (container_container_id_number, reports_id),
+    CONSTRAINT uk_13bki07esm4ocyx8kfeb29k9d UNIQUE (reports_id),
+    CONSTRAINT fknvn88y1niiww8oihjbupgv7i8 FOREIGN KEY (reports_id)
+        REFERENCES public.report (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    CONSTRAINT fksfxx58jaxqrymkc6uba1hv451 FOREIGN KEY (container_container_id_number)
+        REFERENCES public.container (container_id_number) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.container_reports
+    OWNER to postgres;
+
+
+-- ############################################################################
+-- 4. report
+-- ############################################################################
+-- Table: public.report
+
+DROP TABLE IF EXISTS public.report CASCADE;
+
+CREATE TABLE public.report
+(
+    id                            bigint NOT NULL,
+    add_date                      timestamp without time zone,
+    chassis_no                    character varying(255) COLLATE pg_catalog."default",
+    container_needs               character varying(255) COLLATE pg_catalog."default",
+    container_no_pin              character varying(255) COLLATE pg_catalog."default",
+    container_state               character varying(255) COLLATE pg_catalog."default",
+    estimated_cost_of_repair      character varying(255) COLLATE pg_catalog."default",
+    in_out                        character varying(255) COLLATE pg_catalog."default",
+    in_out_date                   date,
+    last_name                     character varying(255) COLLATE pg_catalog."default",
+    order_no                      character varying(255) COLLATE pg_catalog."default",
+    truck_no                      character varying(255) COLLATE pg_catalog."default",
+    wagon_no                      character varying(255) COLLATE pg_catalog."default",
+    container_container_id_number character varying(255) COLLATE pg_catalog."default",
+    user_username                 character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT report_pkey PRIMARY KEY (id),
+    CONSTRAINT uk_6smnjlugg4s7wed4kkin29d3m UNIQUE (container_no_pin),
+    CONSTRAINT fk3ufb33oknmds84ed8vn6qbopc FOREIGN KEY (user_username)
+        REFERENCES public.users (username) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    CONSTRAINT fkb7djk8ij1151cuj7pxo0ektnj FOREIGN KEY (container_container_id_number)
+        REFERENCES public.container (container_id_number) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    TABLESPACE pg_default;
+
+ALTER TABLE public.report
+    OWNER to postgres;
+
+-- ############################################################################
+-- 5. users
+-- ############################################################################
+-- Table: public.users
+
+DROP TABLE IF EXISTS public.users CASCADE;
+
+CREATE TABLE public.users
+(
+    username     character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email        character varying(255) COLLATE pg_catalog."default",
+    first_name   character varying(255) COLLATE pg_catalog."default",
+    last_name    character varying(255) COLLATE pg_catalog."default",
+    password     character varying(255) COLLATE pg_catalog."default",
+    role_id      bigint,
+    was_released smallint,
+    CONSTRAINT users_pkey PRIMARY KEY (username),
+    CONSTRAINT fk4qu1gr772nnf6ve5af002rwya FOREIGN KEY (role_id)
+        REFERENCES public.role (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+) TABLESPACE pg_default;
+
+ALTER TABLE public.users
+    OWNER to postgres;
+
+-- ############################################################################
+-- 6. role
+-- ############################################################################
+-- Table: public.role
+
+DROP TABLE IF EXISTS public.role CASCADE;
+
+CREATE TABLE public.role
+(
+    id        bigint NOT NULL,
+    authority character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT role_pkey PRIMARY KEY (id)
+) TABLESPACE pg_default;
+
+ALTER TABLE public.role
+    OWNER to postgres;
+
+-- ############################################################################
+-- 9. container
+-- ############################################################################
+-- Table: public.container
+
+DROP TABLE IF EXISTS public.container CASCADE;
+
+-- Table: public.container
+
+-- DROP TABLE public.container;
+
+CREATE TABLE public.container
+(
+    container_id_number  character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    container_ship_owner character varying(255) COLLATE pg_catalog."default",
+    container_type       character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT container_pkey PRIMARY KEY (container_id_number)
+) TABLESPACE pg_default;
+
+ALTER TABLE public.container
+    OWNER to postgres;
+
+-- ############################################################################
+-- 10. SEQUENCES
+-- ############################################################################
+-- SEQUENCE: public.container_report_seq
+
+DROP SEQUENCE IF EXISTS public.container_report_seq CASCADE;
+
+CREATE SEQUENCE public.report_seq
+    INCREMENT 1 START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.report_seq
+    OWNER TO postgres;
+
+-- ############################################################################
+-- SEQUENCE: public.damage_seq
+
+DROP SEQUENCE IF EXISTS public.damage_seq;
+
+CREATE SEQUENCE public.damage_seq
+    INCREMENT 1 START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.damage_seq
+    OWNER TO postgres;
+-- ############################################################################
+-- SEQUENCE: public.image_seq
+
+DROP SEQUENCE IF EXISTS public.image_seq;
+
+CREATE SEQUENCE public.image_seq
+    INCREMENT 1 START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.image_seq
+    OWNER TO postgres;
+-- ############################################################################
+-- SEQUENCE: public.role_seq
+
+DROP SEQUENCE IF EXISTS public.role_seq;
+
+CREATE SEQUENCE public.role_seq
+    INCREMENT 1 START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.role_seq
+    OWNER TO postgres;
+-- ############################################################################
+-- ############################################################################
+
+
+-- ############################################################################
+-- test data
+
+-- users
+
+insert into USERS (username, first_name, last_name, email, password, role_id, was_released)
+values ('wichni', 'Jakub', 'Wichniarek', 'wichniarekjakub89@gmail.com', '123456', 1, false ),
+       ('przydan', 'Patryk', 'Przydanek', 'przydan@hotmail.com','123456', 1, false ),
+       ('maciej', 'Maciej', 'Jasinski', 'maciejj95@op.pl','123456', 2, false ),
+       ('piotrek', 'Piotr', 'Misko', 'miskopiotr@gmail.com','123456', 2, false ),
+       ('test', 'test', 'test', 'testowykontenerowy@gmail.com','kontenery', 1, false );
+
+INSERT INTO ROLE(id, authority)
+VALUES (nextval('role_seq'), 'ADMIN'),
+       (nextval('role_seq'), 'USER');

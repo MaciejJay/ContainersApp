@@ -1,11 +1,20 @@
 package com.containers.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Objects;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
+@Data
+@EqualsAndHashCode(exclude = {"reports"})
 public class Container {
 
     @Id
@@ -13,61 +22,12 @@ public class Container {
     private String containerType;
     private String containerShipOwner;
 
+    @OneToMany(targetEntity = Report.class,
+            fetch = LAZY,
+            cascade = ALL)
+    private Set<Report> reports = new HashSet<>();
 
-    public Container() {
-    }
-
-    public Container(String containerIdNumber, String containerType, String containerShipOwner) {
-        this.containerIdNumber = containerIdNumber;
-        this.containerType = containerType;
-        this.containerShipOwner = containerShipOwner;
-    }
-
-    public String getContainerIdNumber() {
-        return containerIdNumber;
-    }
-
-    public void setContainerIdNumber(String containerIdNumber) {
-        this.containerIdNumber = containerIdNumber;
-    }
-
-    public String getContainerType() {
-        return containerType;
-    }
-
-    public void setContainerType(String containerType) {
-        this.containerType = containerType;
-    }
-
-    public String getContainerShipOwner() {
-        return containerShipOwner;
-    }
-
-    public void setContainerShipOwner(String containerShipOwner) {
-        this.containerShipOwner = containerShipOwner;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Container container = (Container) o;
-        return Objects.equals(containerIdNumber, container.containerIdNumber) &&
-                Objects.equals(containerType, container.containerType) &&
-                Objects.equals(containerShipOwner, container.containerShipOwner);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(containerIdNumber, containerType, containerShipOwner);
-    }
-
-    @Override
-    public String toString() {
-        return "Container{" +
-                "containerIdNumber='" + containerIdNumber + '\'' +
-                ", containerType='" + containerType + '\'' +
-                ", containerShipOwner='" + containerShipOwner + '\'' +
-                '}';
+    public void addReport(Report report) {
+        reports.add(report);
     }
 }

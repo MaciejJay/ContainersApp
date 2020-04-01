@@ -18,7 +18,7 @@ public class ContainerController {
 
     @GetMapping("")
     public ModelAndView containersPage(@RequestParam(required = false) String containerNo) {
-        ModelAndView modelAndView = new ModelAndView("containersPage");
+        ModelAndView modelAndView = new ModelAndView("container/containersPage");
         if (containerNo == null) {
             return modelAndView.addObject("containerSet", containerService.findAllContainers());
         } else
@@ -27,7 +27,7 @@ public class ContainerController {
 
     @GetMapping("/add")
     public ModelAndView createContainerView() {
-        ModelAndView modelAndView = new ModelAndView("addContainer");
+        ModelAndView modelAndView = new ModelAndView("container/addContainer");
         modelAndView.addObject("container", new Container());
         modelAndView.addObject("update", false);
         return modelAndView;
@@ -35,7 +35,7 @@ public class ContainerController {
 
     @GetMapping("/update/{noContainer}")
     public ModelAndView updateContainerView(@PathVariable String noContainer) {
-        ModelAndView modelAndView = new ModelAndView("addContainer");
+        ModelAndView modelAndView = new ModelAndView("container/addContainer");
         modelAndView.addObject(containerService.findContainerById(noContainer));
         modelAndView.addObject("update", true);
         return modelAndView;
@@ -58,10 +58,4 @@ public class ContainerController {
         containerService.deleteContainer(containerNo);
         return "redirect:/containers/";
     }
-//
-//    @GetMapping("/containers/add/model")
-//    public ModelAndView containersAddModel() {
-//        ModelAndView modelAndView = new ModelAndView("containerModel");
-//        return new ModelAndView("containerModel");
-//    }
 }

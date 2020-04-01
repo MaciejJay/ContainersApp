@@ -1,0 +1,15 @@
+/* Set a background image by replacing the URL below */
+body {
+    background: url('/images/bg_con.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.shadow-textarea textarea.form-control::placeholder {
+    font-weight: 400;
+}
+.shadow-textarea textarea.form-control {
+    padding-left: 0.9rem;
+}
