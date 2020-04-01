@@ -59,7 +59,7 @@ public class ContainerReportsFormController {
     }
 
     @PostMapping("/add")
-    public String addRaport(@ModelAttribute ReportFormDTO reportFormDTO) {
+    public String addReport(@ModelAttribute ReportFormDTO reportFormDTO) {
         Report report = reportService.saveContainerReport(
                 new Report(
                         containerService.findContainerById(reportFormDTO.getContainerPrefixAndNo()),
