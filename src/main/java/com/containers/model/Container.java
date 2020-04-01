@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,10 @@ public class Container {
     private Set<Report> reports = new HashSet<>();
 
     public void addReport(Report report) {
-        reports.add(report);
+        if (report == null) {
+            reports = Collections.emptySet();
+        } else {
+            reports.add(report);
+        }
     }
 }

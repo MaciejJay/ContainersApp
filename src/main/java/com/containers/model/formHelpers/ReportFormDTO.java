@@ -27,7 +27,6 @@ public class ReportFormDTO {
     private ContainerState containerState;
     private ContainerNeeds containerNeeds;
 
-
     public ReportFormDTO(Container container) {
         this.containerPrefixAndNo = container.getContainerIdNumber();
         this.containerType = container.getContainerType();
