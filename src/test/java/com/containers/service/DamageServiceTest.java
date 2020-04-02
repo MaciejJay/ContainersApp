@@ -38,8 +38,8 @@ public class DamageServiceTest {
     public void shouldAddNewDamageToContainer() {
         //given
         Damage newDamage = new Damage
-                (7L, "Dziura w podlodze",
-                        null, DamageType.HOLE, Side.CENTER, null);
+                ("Dziura w podlodze",
+                        null, DamageType.HOLE, Side.CENTER);
 
         //when
         Damage addDamage = sut.saveContainerDamage(newDamage);
@@ -53,8 +53,8 @@ public class DamageServiceTest {
     public void shouldUpdateContainerDamage() {
         //given
         Damage updateDamage = new Damage
-                (3L, "Uszkodzony rygiel",
-                        null, DamageType.BENT, Side.DOOR, null);
+                ("Uszkodzony rygiel",
+                        null, DamageType.BENT, Side.DOOR);
         //when
 
         Damage containerDamage = sut.saveContainerDamage(updateDamage);
