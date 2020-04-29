@@ -1,8 +1,14 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: jakub
+  Date: 26.03.2020
+  Time: 06:38
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Send e-mail error</title>
+    <title>Upload Image</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,6 +21,9 @@
         body {
             font-family: Arial, serif;
             font-size: 17px;
+            font-weight: bold;
+            color: white;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
 
         .outside {
@@ -36,20 +45,13 @@
 <body>
 <div class="outside">
 
-    <img src="/images/bg_con.jpg" alt="container" title="containerHome" style="
+    <img src="/images/bg_con.jpg" style="
         height: 100%;
         width: 100%;">
 
-    <
     <div class="inside"
          style="top: 20%;
             left: 30%;">
 
-        <center>
-            <h2>Sorry, the email was not sent because of the following error:</h2>
-            <h3>${exception.message}</h3>
-        </center>
-    </div>
-</div>
 </body>
 </html>
