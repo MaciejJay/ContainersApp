@@ -1,16 +1,23 @@
 package com.containers.model;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Image {
 
     @Id
-    @GeneratedValue(generator = "imageSeq")
-    @SequenceGenerator(name = "imageSeq", sequenceName = "image_seq", allocationSize = 1)
+    @GeneratedValue
     private Long id;
-    private String url;
+    private @NonNull String url;
 
-    public Image() {
-    }
 }

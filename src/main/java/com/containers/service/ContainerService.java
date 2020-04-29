@@ -3,8 +3,8 @@ package com.containers.service;
 import com.containers.exceptions.ContainerAlreadyExistException;
 import com.containers.exceptions.ContainerNotFoundException;
 import com.containers.model.Container;
+import com.containers.model.Report;
 import com.containers.repository.ContainerRepository;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -48,6 +48,7 @@ public class ContainerService {
         } else throw new ContainerNotFoundException("Container not found");
     }
 
+    // TODO: stream.findfirst.orElse lub iterator
     public Set<Container> findContainerByIdSet(String noContainer) {
         Optional<Container> containerById = containerRepository.findById(noContainer);
         if (containerById.isPresent()) {
@@ -55,5 +56,11 @@ public class ContainerService {
             containers.add(containerById.get());
             return containers;
         } else throw new ContainerNotFoundException("Container not found");
+    }
+
+    public void addReport(Report report, String noContainer) {
+        Container containerById = findContainerById(noContainer);
+        containerById.addReport(report);
+        updateContainer(containerById);
     }
 }
